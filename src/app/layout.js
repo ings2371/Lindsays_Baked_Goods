@@ -1,6 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Dai_Banna_SIL, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
+import Footer from "./components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +24,16 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-	<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-			<Header />
-			{children}
 
-		</div>
+        <div className="size-full max-h-screen grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        <Header />
+          <div className="overflow-scroll overflow-x-hidden">
+            {children}
+          </div>
+          <Footer />
+          
+
+        </div>
       </body>
     </html>
   );
