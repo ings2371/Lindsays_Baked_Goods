@@ -2,7 +2,8 @@ const Item = ({Baked_Good}) => {
 
     return (
         <>
-        
+
+            {/* how the data displays*/}
             <div key={Baked_Good._id} className="col-md-4">
             <div className="box-shadow">
                 <img 

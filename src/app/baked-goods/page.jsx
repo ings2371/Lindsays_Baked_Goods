@@ -2,6 +2,7 @@
 import Item from "@/app/components/card"
 import { useState, useEffect } from 'react'
 
+//this is some mock data
 var Baked_Goods = [
     {
         _id : 1,
@@ -75,7 +76,7 @@ export default function Home({params}) {
   return (
     <div style={{width: "1000px"}}>
         
-
+            {/* maps the mock data*/}
             <div className="flex">
             {Baked_Goods.map (Baked_Good => 
                 <div style={{padding: "16.5px"}}>

@@ -2,12 +2,12 @@
 export default function Contact() {
 
     return (
-        <div>
+        <div style={{ textAlign: "center" }}>
             <h1 style={{ textAlign: "center" }}>Contact us</h1>
 
             <form className='form-signin'>
                 <p>Have any questions? Message us below.</p>
-
+                <br/>
                 <p>First Name:</p>
                 <label htmlFor="First_Name" className="sr-only">First Name</label>
                 <input type="text" id="First_Name" className="form-control" required autoFocus />

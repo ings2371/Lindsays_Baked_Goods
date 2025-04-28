@@ -21,49 +21,60 @@ const Header = () => {
 	return (
 		<header className="flex space-x-6" >
 			<nav>
-            <Image
-                src="/logo.png"
-                width={70}
-                height={70}
-                alt="Logo"
-            />
-
+                <div style={{ display: 'block', margin: 'auto', maxWidth: 'max-content' }}>
+                  <Image
+                    src="/logo.png"
+                    width={70}
+                    height={70}
+                    alt="Logo"
+                />  
+                </div>
+                
+                {/* links to home page*/}
 				<Link href="/" style={{ padding: '1rem', fontSize: '30px' }}>Home</Link>
 
 				 <div className="relative inline-block" style={{ padding: '1rem', fontSize: '1rem' }}>
                 <button
                     type="button"
                     className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
-                    onClick={toggleDropdown}
+                    onClick={toggleDropdown} style={{fontSize: '20px' }}
                 >
                     Inventory <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
 
+                {/* opens dropdown*/}
                 {isOpen && (
                     <div className="origin-top-right absolute right-0 mt-2 w-44 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                         <ul role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                             <li>
-								<Link href="/" style={{fontSize: '30px' }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+
+                                {/* links to regular inventory page*/}
+								<Link href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     onClick={closeDropdown} >Regular Inventory</Link>
                             </li>
 
                             <li>
+                                {/* links to seasonal inventory page*/}
 								<Link href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     onClick={closeDropdown}>Seasonal Inventory</Link>
                             </li>
                             <li>
+                                {/* links to all inventory page*/}
 							<Link href="/baked-goods" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     onClick={closeDropdown}>All Inventory</Link>
                             </li>
                         </ul>
                     </div>
                 )}
-            </div>
+                </div>
 
+                {/* links to contact page*/}
                 <Link href="/contact" style={{ padding: '1rem', fontSize: '30px' }}>Contacts</Link>
-				<Link href="/" style={{ padding: '1rem', fontSize: '30px' }}>Checkout</Link>
+
+                {/* links to checkout page*/}
+				<Link href="/checkout" style={{ padding: '1rem', fontSize: '30px' }}>Checkout</Link>
 
 			</nav>
 		</header>
