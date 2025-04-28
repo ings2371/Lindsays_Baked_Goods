@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import Image from "next/image";
 
 
 //https://stackoverflow.com/questions/67806445/dropdown-menu-next-js-tailwind-css
@@ -18,11 +19,18 @@ const Header = () => {
     };
 
 	return (
-		<header className="flex space-x-6">
+		<header className="flex space-x-6" >
 			<nav>
-				<Link href="/">Home</Link>
+            <Image
+                src="/logo.png"
+                width={70}
+                height={70}
+                alt="Logo"
+            />
 
-				 <div className="relative inline-block">
+				<Link href="/" style={{ padding: '1rem', fontSize: '30px' }}>Home</Link>
+
+				 <div className="relative inline-block" style={{ padding: '1rem', fontSize: '1rem' }}>
                 <button
                     type="button"
                     className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
@@ -37,8 +45,8 @@ const Header = () => {
                     <div className="origin-top-right absolute right-0 mt-2 w-44 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                         <ul role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                             <li>
-								<Link href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    onClick={closeDropdown}>Regular Inventory</Link>
+								<Link href="/" style={{fontSize: '30px' }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    onClick={closeDropdown} >Regular Inventory</Link>
                             </li>
 
                             <li>
@@ -53,8 +61,9 @@ const Header = () => {
                     </div>
                 )}
             </div>
-				
-				<Link href="/">Checkout</Link>
+
+                <Link href="/contact" style={{ padding: '1rem', fontSize: '30px' }}>Contacts</Link>
+				<Link href="/" style={{ padding: '1rem', fontSize: '30px' }}>Checkout</Link>
 
 			</nav>
 		</header>

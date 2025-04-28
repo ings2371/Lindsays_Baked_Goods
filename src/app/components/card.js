@@ -9,9 +9,9 @@ const Item = ({Baked_Good}) => {
                 src={Baked_Good.thumbnail}
                 style={{height: 428.33, width: 300}}
                 />
-                <p>
+                <p style={{textAlign: "center" }}>
                     {Baked_Good.Baked_Name} <br/>
-                    {Baked_Good.Different_varients.Unit} = {Baked_Good.Different_varients.Prices[0].Cost}
+                    {Baked_Good.Different_varients.Prices[0].Cost}
                     
                 </p>
             </div>
