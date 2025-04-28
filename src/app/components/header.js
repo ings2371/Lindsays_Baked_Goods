@@ -19,7 +19,7 @@ const Header = () => {
     };
 
 	return (
-		<header className="flex space-x-6" >
+		<header /*style={{ backgroundColor: '#d0d0d0' }}*/ >
 			<nav>
                 <div style={{ display: 'block', margin: 'auto', maxWidth: 'max-content' }}>
                   <Image
@@ -39,8 +39,8 @@ const Header = () => {
                     className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
                     onClick={toggleDropdown} style={{fontSize: '20px' }}
                 >
-                    Inventory <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                    Inventory <svg className="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
 
@@ -71,7 +71,7 @@ const Header = () => {
                 </div>
 
                 {/* links to contact page*/}
-                <Link href="/contact" style={{ padding: '1rem', fontSize: '30px' }}>Contacts</Link>
+                <Link href="/contact" style={{ padding: '1rem', fontSize: '30px' }}>Contact</Link>
 
                 {/* links to checkout page*/}
 				<Link href="/checkout" style={{ padding: '1rem', fontSize: '30px' }}>Checkout</Link>

@@ -10,7 +10,7 @@ const Item = ({Baked_Good}) => {
                 src={Baked_Good.thumbnail}
                 style={{height: 428.33, width: 300}}
                 />
-                <p style={{textAlign: "center" }}>
+                <p style={{textAlign: "center", fontSize: 25 }}>
                     {Baked_Good.Baked_Name} <br/>
                     {Baked_Good.Different_varients.Prices[0].Cost}
                     

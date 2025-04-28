@@ -75,18 +75,15 @@ export default function Home({params}) {
     const { Baked_Name } = params
   return (
     <div style={{width: "1000px"}}>
-        
-            {/* maps the mock data*/}
-            <div className="flex">
+        {/* maps the mock data*/}
+        <div className="flex">
             {Baked_Goods.map (Baked_Good => 
                 <div style={{padding: "16.5px"}}>
                     <Item key={Baked_Good._id} Baked_Good={Baked_Good} />
-                </div>
-                
-
-          )}
-                      </div>
-          </div>
+                </div>            
+            )}
+        </div>
+    </div>
           
 
   );
