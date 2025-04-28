@@ -70,8 +70,7 @@ var Baked_Goods = [
 
 
 
-export default function Home({params}) {
-    const { Baked_Name } = params
+export default function Home() {
   return (
     <div style={{width: "1000px"}}>
         

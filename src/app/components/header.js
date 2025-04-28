@@ -46,7 +46,7 @@ const Header = () => {
                                     onClick={closeDropdown}>Seasonal Inventory</Link>
                             </li>
                             <li>
-							<Link href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+							<Link href="/baked-goods" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     onClick={closeDropdown}>All Inventory</Link>
                             </li>
                         </ul>
