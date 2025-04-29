@@ -15,6 +15,10 @@ export default function Checkout() {
                 <p>Name:</p>
                 <label htmlFor="Full_Name" className="sr-only">full name</label>
                 <input type="text" id="Full_Name" required autoFocus />
+
+                <p>Date:</p>
+                <label htmlFor="Date" className="sr-only">Date</label>
+                <input type="date" id="Date" className="form-control"  required />
             </form>
         </div>
         

@@ -72,3 +72,7 @@ const bakedGoodSchema = new mongoose.Schema({
         required: [true, "item needs a cotagory of baked gooks like cookie or cake"]
     }
 })
+
+const Baked_Goods = mongoose.model("Baked_Goods", bakedGoodSchema)
+
+export default Baked_Goods;
