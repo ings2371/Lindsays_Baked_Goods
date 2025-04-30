@@ -8,7 +8,7 @@ import Baked_Goods from "../../../../models/bakey";
 export async function POST(request) {
     const {Baked_Images, Thumbnail, Baked_Name, Item_Description, Different_varients, Season, Catagory} = await request.json();
     await connectMongo();
-    await Baked_Goods.create()
+    await Baked_Goods.create(Baked_Images, Thumbnail, Baked_Name, Item_Description, Different_varients, Season, Catagory)
     return NextResponse.json({ message: "item created"}, {status: 201});
 }
 
