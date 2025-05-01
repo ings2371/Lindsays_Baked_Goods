@@ -49,7 +49,7 @@ const bakedGoodSchema = new mongoose.Schema({
                 }
             ],
             Unit : {
-                type: Number,
+                type: String,
                 required: [true, "needs a unit of messurement"]
             }
         }
@@ -65,6 +65,6 @@ const bakedGoodSchema = new mongoose.Schema({
     }
 })
 
-const Baked_Goods = mongoose.model("Baked_Goods", bakedGoodSchema)
+const Baked_Goods = mongoose.models.baked_goods || mongoose.model("baked_goods", bakedGoodSchema)
 
 export default Baked_Goods;
