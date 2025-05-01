@@ -1,5 +1,4 @@
 'use client'
-import { POST } from '../api/contact/route'
 import { useState } from 'react';
 import styles from './formStyles.module.css'
 export default function Contact() {
