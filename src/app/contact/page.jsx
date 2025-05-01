@@ -1,12 +1,16 @@
 'use client'
+import { POST } from '../api/Contact/route'
+import { useState } from 'react';
 import styles from './formStyles.module.css'
 export default function Contact() {
 
+
+    
     return (
         <div style={{ textAlign: "center" }}>
             <h1 style={{ padding: '1rem', fontSize: '24px' }}>Contact us</h1>
 
-            <form>
+            <form action={ POST }>
                 <p>Have any questions? Message us below.</p>
                 <br/>
                 <p>First Name:</p>
@@ -24,10 +28,6 @@ export default function Contact() {
                 <p>Email Address:</p>
                 <label htmlFor="Email_Address" className="sr-only">Email Address</label>
                 <input type="email" id="Email_Address" className={styles.input} required />
-
-                <p>Phone:</p>
-                <label htmlFor="Phone" className="sr-only">Phone</label>
-                <input type="tel" id="Phone" className={styles.input} required />
 
                 <p>Comments/Questions:</p>
                 <label htmlFor="Comments" className="sr-only">Comments/Questions</label>
