@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react';
 import styles from './formStyles.module.css'
+import { useRouter } from 'next/navigation'
 export default function Contact() {
 
     const [FirstName, setFirstName] = useState("")
@@ -44,11 +45,17 @@ export default function Contact() {
                 <br/>
                 <p>First Name:</p>
                 <label htmlFor="First_Name" className="sr-only">First Name</label>
-                <input type="text" id="First_Name" className={styles.input} required autoFocus />
+                <input
+                onChange={(e) => setFirstName(e.target.value)}
+                value = { FirstName }
+                type="text" id="First_Name" className={styles.input} required autoFocus />
 
                 <p>Last Name:</p>
                 <label htmlFor="Last_Name" className="sr-only">Last Name</label>
-                <input type="text" id="Last_Name" className={styles.input} required />
+                <input
+                onChange={(e) => setLastName(e.target.value)}
+                value = { LastName }
+                type="text" id="Last_Name" className={styles.input} required />
 
                 <p>City:</p>
                 <label htmlFor="City" className="sr-only">City</label>
@@ -59,7 +66,10 @@ export default function Contact() {
 
                 <p>Email Address:</p>
                 <label htmlFor="Email_Address" className="sr-only">Email Address</label>
-                <input type="email" id="Email_Address" className={styles.input} required />
+                <input
+                onChange={(e) => setEmail(e.target.value)}
+                value = { Email }
+                type="email" id="Email_Address" className={styles.input} required />
 
                 <p>Comments/Questions:</p>
                 <label htmlFor="Comments" className="sr-only">Comments/Questions</label>
