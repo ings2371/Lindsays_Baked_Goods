@@ -1,18 +1,6 @@
 const mongoose = require('mongoose')
 
 const bakedGoodSchema = new mongoose.Schema({
-    Baked_Images: [{
-            Variation_name: {
-                type: String,
-                required: [true, "item needs a name"]
-            },
-            Image: {
-                type: String,
-                required: [true, "item needs a image"]
-            }
-        }
-    ],
-
     Thumbnail: {
         type: String,
         required: [true, "item needs a thumbnail for page"]
@@ -32,6 +20,10 @@ const bakedGoodSchema = new mongoose.Schema({
                 type: String,
                 required: [true, "item needs a name"]
             },
+            Image: [{
+                type: String,
+                required: [true, "item needs a image"]
+            }],
             Prices: [
                 {
                     Quantity: {

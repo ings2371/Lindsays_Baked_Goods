@@ -6,7 +6,7 @@ const footer = () => {
     <p>Contact info:</p>
     <p>
       lindsayings78@gmail.com <br />
-      Cook to bake <br />
+      not done footer<br />
     </p>
   </footer>
   )
