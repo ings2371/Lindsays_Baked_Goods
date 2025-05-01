@@ -1,3 +1,4 @@
+'use server'
 import { NextResponse } from "next/server";
 import connectMongo from "../../../../libs/mongodb";
 import CheckOut from "../../../../models/check";
