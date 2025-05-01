@@ -20,9 +20,7 @@ const ContactSchema = new mongoose.Schema({
     Comments:{
         type: String,
         required: [true, "Comments are needed for contact"]
-    },
+    }
     })
     
-    const Contact = mongoose.model("Contact", ContactSchema)
-    
-    export default Contact;
+    module.exports = mongoose.model('Contact', ContactSchema)

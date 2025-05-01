@@ -1,38 +1,73 @@
 'use client'
-import { POST } from '../api/Contact/route'
+import { POST } from '../api/contact/route'
 import { useState } from 'react';
 import styles from './formStyles.module.css'
-
 export default function Contact() {
 
+    const [FirstName, setFirstName] = useState("")
+    const [LastName, setLastName] = useState("")
+    const [City, setCity] = useState("")
+    const [Email, setEmail] = useState("")
+    const [Comments, setComments] = useState("")
 
-    
+    const router = useRouter()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log({FirstName, LastName, City, Email, Comments})
+
+        try {
+            const res = await fetch("http://localhost:3000/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify({FirstName, LastName, City, Email, Comments})
+            })
+            if (res.ok) {
+                router.push('/')
+            } else {
+                throw new Error('Failed to send comment')
+            }
+        } catch (error) {
+            console.log(error)
+
+        }
+        
+    }
+
     return (
         <div style={{ textAlign: "center" }}>
             <h1 style={{ padding: '1rem', fontSize: '24px' }}>Contact us</h1>
 
-            <form action={ POST }>
+            <form onSubmit={ handleSubmit }>
                 <p>Have any questions? Message us below.</p>
                 <br/>
                 <p>First Name:</p>
-                <label htmlFor="FirstName" className="sr-only">First Name</label>
-                <input type="text" id="FirstName" className={styles.input} required autoFocus />
+                <label htmlFor="First_Name" className="sr-only">First Name</label>
+                <input type="text" id="First_Name" className={styles.input} required autoFocus />
 
                 <p>Last Name:</p>
-                <label htmlFor="LastName" className="sr-only">Last Name</label>
-                <input type="text" id="LastName" className={styles.input} required />
+                <label htmlFor="Last_Name" className="sr-only">Last Name</label>
+                <input type="text" id="Last_Name" className={styles.input} required />
 
                 <p>City:</p>
                 <label htmlFor="City" className="sr-only">City</label>
-                <input type="text" id="City" className={styles.input} />
+                <input
+                onChange={(e) => setCity(e.target.value)}
+                value = { City }
+                type="text" id="City" className={styles.input} />
 
                 <p>Email Address:</p>
-                <label htmlFor="Email" className="sr-only">Email Address</label>
-                <input type="email" id="Email" className={styles.input} required />
+                <label htmlFor="Email_Address" className="sr-only">Email Address</label>
+                <input type="email" id="Email_Address" className={styles.input} required />
 
                 <p>Comments/Questions:</p>
                 <label htmlFor="Comments" className="sr-only">Comments/Questions</label>
-                <textarea type="text" id="Comments" className={styles.input} required />
+                <textarea
+                onChange={(e) => setComments(e.target.value)}
+                value = { Comments }
+                type="text" id="Comments" className={styles.input} required />
                 <br/>
                 <button className={styles.button} type="submit">Submit</button>
             </form>
