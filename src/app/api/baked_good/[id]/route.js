@@ -13,7 +13,7 @@ export async function PUT(request, {params}) {
 }
 
 export async function GET(request, {params}) {
-    const {id} = params;    
+    const {id} = params;
     await connectMongo();
 
     const baked = await Baked_Goods.findOne({_id: id});

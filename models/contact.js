@@ -21,6 +21,6 @@ const ContactSchema = new mongoose.Schema({
         type: String,
         required: [true, "Comments are needed for contact"]
     }
-    })
+    }, { timestamps: true })
     
     module.exports = mongoose.model('Contact', ContactSchema)
