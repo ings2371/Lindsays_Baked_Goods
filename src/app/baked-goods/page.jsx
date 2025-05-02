@@ -2,75 +2,9 @@
 import Item from "@/app/components/card"
 import { useState, useEffect } from 'react'
 
-//this is some mock data
-// var Baked_Goods = [
-//     {
-//         _id : 1,
-//         thumbnail : "https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg",
-//         Baked_Name : "cookie",
-//         Different_varients : {
-//             Prices : [
-//                 {
-//                     Quantity : 1,
-//                     Cost : 5
-//                 },
-//                 {
-//                     Quantity : 15,
-//                     cost : 50
-//                 }
-                    
-    
-//             ],
-//             Unit : "6 cookies"
-    
-//         }
-//     },
-//     {
-//         _id : 2,
-//         thumbnail : "https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg",
-//         Baked_Name : "cookie",
-//         Different_varients : {
-//             Prices : [
-//                 {
-//                     Quantity : 1,
-//                     Cost : 5
-//                 },
-//                 {
-//                     Quantity : 15,
-//                     cost : 50
-//                 }
-                    
-    
-//             ],
-//             Unit : "6 cookies"
-    
-//         }
-//     },
-//     {
-//         _id : 3,
-//         thumbnail : "https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg",
-//         Baked_Name : "cookie",
-//         Different_varients : {
-//             Prices : [
-//                 {
-//                     Quantity : 1,
-//                     Cost : 5
-//                 },
-//                 {
-//                     Quantity : 15,
-//                     cost : 50
-//                 }
-                    
-    
-//             ],
-//             Unit : "6 cookies"
-    
-//         }
-//     }
-// ]
 
-export default function Goods() {
-    const [Baked_Good, setBaked_Good] = useState("")
+export default function Home() {
+    const [BakedGoods, setBaked_Goods] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
@@ -85,14 +19,16 @@ export default function Goods() {
                     throw new Error(responce.status)
                 }
                 const json = await responce.json()
-                setBaked_Good(json)
+                setBaked_Goods(json)
             } catch (e) {
                 setError(e)
             } finally {
                 setLoading(false)
+                
             }
         }
         fetchData();
+        
     }, [])
 
 
@@ -105,13 +41,22 @@ export default function Goods() {
     
   return (
     <div>
-      {Baked_Good ? (
-        <pre>{JSON.stringify(Baked_Good, null, 2)}</pre>
+      {BakedGoods ? (
+        <div style={{width: "1000px"}}>
+        {/* maps the mock data*/}
+        <div className="flex">
+            {BakedGoods.map (Baked_Good => (
+                <div key={Baked_Good._id} style={{padding: "16.5px"}}>
+                    <Item Baked_Good={Baked_Good} />
+                </div>            
+            ))}
+        </div>
+    </div>
       ) : (
         <div>No data yet.</div>
       )}
     </div>
-          
+    
 
   );
 }
