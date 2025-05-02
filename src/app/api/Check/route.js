@@ -7,6 +7,6 @@ import CheckOut from "../../../../models/check";
 export async function POST(request) {
     const {Name, Email, Date, pickUp, OrderItems, Comments, Total} = await request.json();
     await connectMongo();
-    await CheckOut.create(Name, Email, Date, pickUp, OrderItems, Comments, Total)
+    await CheckOut.create({Name, Email, Date, pickUp, OrderItems, Comments, Total})
     return NextResponse.json({ message: "order request is sent to db"}, {status: 201});
 }
