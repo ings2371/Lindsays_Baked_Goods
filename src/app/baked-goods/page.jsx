@@ -115,6 +115,7 @@ export default function Goods() {
             <Item key={goods._id} Baked_Good={goods} />
         )
       }
+
     </div>
           
 
