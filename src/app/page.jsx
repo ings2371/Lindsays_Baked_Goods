@@ -1,50 +1,68 @@
+'use client'
 import Image from "next/image";
 import Item from "@/app/components/card"
-
+import { useState, useEffect } from 'react'
 
 export default function Home() {
+  const [BakedGoods, setBaked_Goods] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
+  useEffect(() => {
+          const fetchData = async () => {
+              setLoading(true)
+              try{
+                  const responce = await fetch("http://localhost:3000/api/baked_good", {
+                      cache: "no-store",
+                  });
+                  if(!responce.ok) {
+                      throw new Error(responce.status)
+                  }
+                  const json = await responce.json()
+                  setBaked_Goods(json)
+              } catch (e) {
+                  setError(e)
+              } finally {
+                  setLoading(false)
+                  
+              }
+          }
+          fetchData();
+          
+      }, [])
+  
+  
+      if (loading) {
+          return <div>loading...</div>
+      }
+      if (error) {
+          return <div>Error: {error.message}</div>
+      }
+
+      const onlySeas = BakedGoods.filter(products => products.Season !== 'no season')
   return (
     <>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        
+        <div>
+      {BakedGoods ? (
+        <div style={{width: "1000px"}}>
+        {/* maps the mock data*/}
+        <div className="flex">
+          {/* only show 3 on screen */}
+            {onlySeas.slice(0, 3).map (Baked_Good => (
+                <div key={Baked_Good._id} style={{padding: "16.5px"}}>
+                    <Item Baked_Good={Baked_Good} />
+                </div>            
+            ))}
         </div>
+    </div>
+
+      ) : (
+        <div>No data yet.</div>
+      )} 
+    </div>
       </main>
       
     </>
