@@ -56,12 +56,6 @@ export default function Home() {
       ) : (
         <div>No data yet.</div>
       )} 
-      {
-        Baked_Good.map(goods =>
-            <Item key={goods._id} Baked_Good={goods} />
-        )
-      }
-
     </div>
     
 
