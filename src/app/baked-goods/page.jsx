@@ -24,11 +24,9 @@ export default function Home() {
                 setError(e)
             } finally {
                 setLoading(false)
-                
             }
         }
         fetchData();
-        
     }, [])
 
 
@@ -52,12 +50,9 @@ export default function Home() {
             ))}
         </div>
     </div>
-
       ) : (
         <div>No data yet.</div>
       )} 
     </div>
-    
-
   );
 }
