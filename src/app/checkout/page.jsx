@@ -18,9 +18,7 @@ export default function Checkout() {
                     throw new Error(response.status)
                 }
                 const json = await response.json()
-                
                 setCart(json)
-
             } catch (e) {
                 setError(e)
             } finally {
@@ -31,15 +29,38 @@ export default function Checkout() {
         
     }, [])
 
+    const buyNow = async (BakedGood, variation) => {
+        // cart.map (BakedGood => (
+
+        // ))
+        const response = await fetch(`/api/sendOrder/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'BakedGood': BakedGood.Baked_Name,
+                'BakedGoodId': BakedGood._id,
+                'variation': variation
+            })
+        })
+        .catch(error => {
+            console.error(error)
+        })
+        const result = await response.json()
+        console.log(result)
+    }
+
     return (
         <div className='size-full'>
-            {console.log("ysess")}
-            {console.log(cart)}
-            <h1>Checkout</h1>
-
-            <p>How to pay is to either E-transfer or with cash<br/> apon pick-up or drop off</p>
+            
+            <div className='p-5'>
+                <h1>Checkout</h1>
+                <p>How to pay is to either E-transfer or with cash<br/> apon pick-up or drop off</p>
+            </div>
+            
             <div className='flex flex-row'>
-                <div className='flex flex-col basis-1/3'>
+                <div className='flex flex-col basis-1/3 p-5'>
                     <form className='bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 border-1 border-gray-200'>
                         <div className="mb-4">
                             <label htmlFor="Email_Address" className="block text-gray-700 text-sm mb-2">Email Address</label>
@@ -55,16 +76,28 @@ export default function Checkout() {
                         </div>
                     </form>
                 </div>
-                <div className='flex flex-col basis-2/3'>
-                    {/* {cart.map (BakedGood => (
-                        <p key={BakedGood.BakedGoodId}>{BakedGood.BakedGood}</p>
-                    ))} */}
+                <div className='flex flex-col basis-2/3 p-5'>
+                    <div className='bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 border-1 border-gray-200'>
+                    {console.log(cart)}
+                        {cart.map (BakedGood => (
+                                <div key={BakedGood.item.Different_varients[BakedGood.selected].Variation_name} className='flex flex-row p-2'>
+                                    <img
+                                        src={`/Baked_Goods/${BakedGood.item.Thumbnail}`}
+                                        style={{height: 150, width: 105.0591833}}
+                                    />
+                                    <div className='flex flex-col basis-2/3 pl-5'>
+                                        <p className='text-2xl'>{BakedGood.item.Baked_Name}</p>
+                                        <p>{BakedGood.item.Different_varients[BakedGood.selected].Variation_name}</p>
+                                    </div>
+                                    <div className='flex flex-col text-right basis-1/3'>
+                                    <p>Quantity: {BakedGood.quantity}</p>
+                                    <p className='text-right'>Price: ${BakedGood.item.Different_varients[BakedGood.selected].Prices[0].Cost*BakedGood.quantity}</p>
+                                    </div>
+                                </div>
+                            ))}
+                    </div>
                 </div>
             </div>
-
-
-            
         </div>
-        
     )
 }

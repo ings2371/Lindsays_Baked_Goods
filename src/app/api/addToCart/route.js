@@ -2,11 +2,11 @@ import { cookies } from "next/headers"
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    const {BakedGood, BakedGoodId, variation} = await request.json();
+    const {BakedGood, BakedGoodId, variation, quantity} = await request.json();
     const cookieOptions = {
         httpOnly: false
     }
-    const item = {BakedGood, BakedGoodId, variation}
+    const item = {BakedGood, BakedGoodId, variation, quantity}
     console.log(item)
     
     const cookie = await cookies()
