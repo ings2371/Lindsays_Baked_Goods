@@ -14,9 +14,12 @@ export async function PUT(request, {params}) {
 
 export async function GET(request, {params}) {
     const {id} = params;
+    console.log("id")
+    console.log(id)
     await connectMongo();
 
     const baked = await Baked_Goods.findOne({_id: id});
+    console.log(baked)
     return NextResponse.json({baked}, { status: 200})
 }
 

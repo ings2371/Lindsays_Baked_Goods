@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div>
       {BakedGoods ? (
-        <div style={{width: "1000px"}}>
+        <div>
         {/* maps the mock data*/}
         <div className="flex">
             {BakedGoods.map (Baked_Good => (
