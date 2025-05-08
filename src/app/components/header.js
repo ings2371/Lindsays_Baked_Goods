@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from "next/image";
 
 
@@ -9,6 +9,17 @@ import Image from "next/image";
 const Header = () => {
 
 	const [isOpen, setIsOpen] = useState(false);
+
+    let menuRef = useRef();
+    useEffect(() =>{
+        let handler = (e) => {
+            if(!menuRef.current.contains(e.target)){
+            setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handler);
+    })
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -33,7 +44,7 @@ const Header = () => {
                 {/* links to home page*/}
 				<Link href="/" style={{ padding: '1rem', fontSize: '30px' }}>Home</Link>
 
-				 <div className="relative inline-block" style={{ padding: '1rem', fontSize: '1rem' }}>
+				 <div className="relative inline-block" style={{ padding: '1rem', fontSize: '1rem' }} ref={menuRef}>
                 <button
                     type="button"
                     className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
