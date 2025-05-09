@@ -9,7 +9,7 @@ const Item = ({Baked_Good}) => {
                     <div className="box-shadow">
                         <img
                         src={`/Baked_Goods/${Baked_Good.Thumbnail}`}
-                        style={{height: 428.33, width: 300, minWidth: 300}}
+                        className='w-18.7 h-26 lg:h-107 lg:w-75 lg:min-w-75'
                         />
 
                         <p style={{textAlign: "center", fontSize: 25 }}>

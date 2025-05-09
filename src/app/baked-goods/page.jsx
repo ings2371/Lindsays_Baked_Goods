@@ -12,7 +12,7 @@ export default function Home() {
         const fetchData = async () => {
             setLoading(true)
             try{
-                const responce = await fetch("http://localhost:3000/api/baked_good", {
+                const responce = await fetch("/api/baked_good", {
                     cache: "no-store",
                 });
                 if(!responce.ok) {

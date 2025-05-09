@@ -52,7 +52,7 @@ const Home = () => {
         const fetchData = async () => {
             setLoading(true)
             try{
-                const responce = await fetch(`http://localhost:3000/api/baked_good/${params.BakedId}`, {
+                const responce = await fetch(`/api/baked_good/${params.BakedId}`, {
                     cache: "no-store",
                 });
                 if(!responce.ok) {
@@ -147,7 +147,7 @@ const Home = () => {
                                 onChange={(e) => setQuantity(e.target.value)}
                                 id="quantity" name="quantity" min="1" max="5" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'></input>
                                     <button
-                                    className='p-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded w-min text-nowrap'
+                                    className='p-5 bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded w-min text-nowrap'
                                     onClick={() => handleAddToCart(BakedGood, variation)}
                                     >
                                         Add to cart

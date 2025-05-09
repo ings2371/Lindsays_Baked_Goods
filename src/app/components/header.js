@@ -20,7 +20,7 @@ const Header = () => {
 
 	return (
 		<header /*style={{ backgroundColor: '#d0d0d0' }}*/ >
-			<nav>
+			<nav className='lg:text-3xl'>
                 <div style={{ display: 'block', margin: 'auto', maxWidth: 'max-content' }}>
                   <Image
                     src="/logo.png"
@@ -31,15 +31,16 @@ const Header = () => {
                 </div>
                 
                 {/* links to home page*/}
-				<Link href="/" style={{ padding: '1rem', fontSize: '30px' }}>Home</Link>
+				<Link href="/" className='p-5'>Home</Link>
 
-				 <div className="relative inline-block" style={{ padding: '1rem', fontSize: '1rem' }}>
+				 <div className="relative inline-block p-5 " style={{ fontSize: '1rem' }}>
                 <button
                     type="button"
-                    className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
-                    onClick={toggleDropdown} style={{fontSize: '20px' }}
+                    className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg lg:text-2xl inline-flex items-center"
+                    onClick={toggleDropdown}
                 >
-                    Inventory <svg className="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    Inventory 
+                    <svg className="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
@@ -71,10 +72,10 @@ const Header = () => {
                 </div>
 
                 {/* links to contact page*/}
-                <Link href="/contact" style={{ padding: '1rem', fontSize: '30px' }}>Contact</Link>
+                <Link href="/contact" className='p-5'>Contact</Link>
 
                 {/* links to checkout page*/}
-				<Link href="/checkout" style={{ padding: '1rem', fontSize: '30px' }}>Checkout</Link>
+				<Link href="/checkout" className='p-5'>Checkout</Link>
 
 			</nav>
 		</header>

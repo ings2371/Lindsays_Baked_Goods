@@ -12,7 +12,7 @@ export default function Home() {
           const fetchData = async () => {
               setLoading(true)
               try{
-                  const responce = await fetch("http://localhost:3000/api/baked_good", {
+                  const responce = await fetch("/api/baked_good", {
                       cache: "no-store",
                   });
                   if(!responce.ok) {
@@ -47,7 +47,7 @@ export default function Home() {
         
         <div>
       {BakedGoods ? (
-        <div style={{width: "1000px"}}>
+        <div className="w-100 lg:w-250">
         {/* maps the mock data*/}
         <div className="flex">
           {/* only show 3 on screen */}
