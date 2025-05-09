@@ -24,7 +24,8 @@ export async function POST(request) {
 
         const cookieOptions = {
             httpOnly: true,
-            secure: true
+            secure: true,
+            maxAge: 2 * 60 * 60 * 1000 //2h
         }
 
         //store token

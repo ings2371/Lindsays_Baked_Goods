@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from "next/image";
 
 
@@ -9,6 +9,17 @@ import Image from "next/image";
 const Header = () => {
 
 	const [isOpen, setIsOpen] = useState(false);
+
+    let menuRef = useRef();
+    useEffect(() =>{
+        let handler = (e) => {
+            if(!menuRef.current.contains(e.target)){
+            setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handler);
+    })
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
