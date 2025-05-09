@@ -44,7 +44,7 @@ const Header = () => {
                 {/* links to home page*/}
 				<Link href="/" className='p-5'>Home</Link>
 
-				 <div className="relative inline-block p-5 " style={{ fontSize: '1rem' }}>
+				 <div className="relative inline-block p-5 " style={{ fontSize: '1rem' }} ref={menuRef}>
                 <button
                     type="button"
                     className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg lg:text-2xl inline-flex items-center"
