@@ -79,17 +79,17 @@ const Home = () => {
 
     
   return (
-    <div>
+    <div className='text-[60%] md:text-[100%] lg:text-[100%]'>
       {BakedGood._id ? (
         <div className="w-full flex">
-            <div className='lg:w-[55vw] lg:min-w-160 lg:max-w-250'>
+            <div className='w-100 lg:w-[55vw] lg:min-w-160 lg:max-w-250'>
                 {console.log(BakedGood)}
                 <div className="box-shadow">
                     <div className='flex flex-row'>
                         <img
                         src={`/Baked_Goods/${BakedGood.Thumbnail}`}
                         // style={{height: 350, width: 300}}
-                        className='w-18.7 h-26 lg:h-107 lg:w-75 lg:min-w-75'
+                        className='w-18.7 h-26 max-w-18.7 md:h-53 md:w-37 lg:h-107 lg:w-75 lg:min-w-75'
                         />
                         <div className='basis-full flex-col'>
                             <p style={{fontSize: "200%"}} className='p-5'>{BakedGood.Baked_Name}</p>
