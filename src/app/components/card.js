@@ -5,7 +5,7 @@ const Item = ({Baked_Good}) => {
         <>
             {/* how the data displays*/}
             <Link href={`/baked-good-details/${Baked_Good._id}`}>
-                <div key={Baked_Good._id} className="col-md-4">
+                <div key={Baked_Good._id} className="p-0 col-md-4">
                     <div className="box-shadow">
                         <img
                         src={`/Baked_Goods/${Baked_Good.Thumbnail}`}

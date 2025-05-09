@@ -47,7 +47,7 @@ export default function Home() {
         
         <div>
       {BakedGoods ? (
-        <div className="w-100 lg:w-250">
+        <div className="lg:w-250">
         {/* maps the mock data*/}
         <div className="flex">
           {/* only show 3 on screen */}

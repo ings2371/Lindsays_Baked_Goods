@@ -30,7 +30,7 @@ const Header = () => {
     };
 
 	return (
-		<header /*style={{ backgroundColor: '#d0d0d0' }}*/ >
+		<header className='flex flex-row' >
 			<nav className='lg:text-3xl'>
                 <div style={{ display: 'block', margin: 'auto', maxWidth: 'max-content' }}>
                   <Image
@@ -42,9 +42,9 @@ const Header = () => {
                 </div>
                 
                 {/* links to home page*/}
-				<Link href="/" className='p-5'>Home</Link>
+				<Link href="/" className='p-1'>Home</Link>
 
-				 <div className="relative inline-block p-5 " style={{ fontSize: '1rem' }} ref={menuRef}>
+				 <div className="relative inline-block p-1 " style={{ fontSize: '1rem' }} ref={menuRef}>
                 <button
                     type="button"
                     className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg lg:text-2xl inline-flex items-center"
@@ -83,10 +83,10 @@ const Header = () => {
                 </div>
 
                 {/* links to contact page*/}
-                <Link href="/contact" className='p-5'>Contact</Link>
+                <Link href="/contact" className='p-1'>Contact</Link>
 
                 {/* links to checkout page*/}
-				<Link href="/checkout" className='p-5'>Checkout</Link>
+				<Link href="/checkout" className='p-1'>Checkout</Link>
 
 			</nav>
 		</header>

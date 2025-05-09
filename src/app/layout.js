@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`antialiased`} >
 
-        <div className="size-full max-h-screen grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 p-20 sm:p-20 md:p-20 font-[family-name:var(--font-geist-sans)]">
-          <Header />
+        <div className="size-full max-h-screen grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 gap-16 pt-20 sm:pt-20 md:p-20 font-[family-name:var(--font-geist-sans)]">
+          <Header className="pl-0"/>
             {children}
           <Footer />
           
