@@ -4,7 +4,8 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
     const {BakedGood, BakedGoodId, variation, quantity} = await request.json();
     const cookieOptions = {
-        httpOnly: false
+        httpOnly: false,
+        maxAge: 9999999999999
     }
     const item = {BakedGood, BakedGoodId, variation, quantity}
     console.log(item)

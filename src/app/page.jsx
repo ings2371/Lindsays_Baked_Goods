@@ -42,28 +42,27 @@ export default function Home() {
       const onlySeas = BakedGoods.filter(products => products.Season !== 'no season')
   return (
     <>
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+
         
         
         <div>
       {BakedGoods ? (
-        <div className="lg:w-250">
-        {/* maps the mock data*/}
         <div className="flex">
-          {/* only show 3 on screen */}
-            {onlySeas.slice(0, 3).map (Baked_Good => (
-                <div key={Baked_Good._id} style={{padding: "16.5px"}}>
-                    <Item Baked_Good={Baked_Good} />
-                </div>            
-            ))}
+          {/* maps the mock data*/}
+          <div className="flex">
+            {/* only show 3 on screen */}
+              {onlySeas.slice(0, 3).map (Baked_Good => (
+                  <div key={Baked_Good._id} style={{padding: "16.5px"}}>
+                      <Item Baked_Good={Baked_Good} />
+                  </div>
+              ))}
+          </div>
         </div>
-    </div>
-
       ) : (
         <div>No data yet.</div>
       )} 
     </div>
-      </main>
+
       
     </>
   );
