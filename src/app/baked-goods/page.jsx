@@ -1,47 +1,21 @@
-'use client'
-import Item from "@/app/components/card"
-import { useState, useEffect } from 'react'
+import Item from "@/app/components/card";
 
+export default async function Page() {
+  const res = await fetch("http://localhost:3000/api/baked_good", {
+    // The 'force-cache' option ensures the data is cached and reused
+    cache: "force-cache",
+  });
 
-export default function Home() {
-    const [BakedGoods, setBaked_Goods] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+  if (!res.ok) {
+    throw new Error(`Failed to fetch data: ${res.status}`);
+  }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true)
-            try{
-                const responce = await fetch("/api/baked_good", {
-                    cache: "no-store",
-                });
-                if(!responce.ok) {
-                    throw new Error(responce.status)
-                }
-                const json = await responce.json()
-                setBaked_Goods(json)
-            } catch (e) {
-                setError(e)
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchData();
-    }, [])
+  const BakedGoods = await res.json();
 
-
-    if (loading) {
-        return <div>loading...</div>
-    }
-    if (error) {
-        return <div>Error: {error.message}</div>
-    }
-    
   return (
     <div>
       {BakedGoods ? (
         <div>
-        {/* maps the mock data*/}
         <div className="flex">
             {BakedGoods.map (Baked_Good => (
                 <div key={Baked_Good._id} style={{padding: "16.5px"}}>

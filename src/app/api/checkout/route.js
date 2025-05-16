@@ -36,5 +36,6 @@ export async function GET(request) {
         total += BakedGood.cost
     }
     var itemsTotal = {"items": fullItems, "total": total}
+    console.log(fullItems)
     return NextResponse.json(fullItems);
 }
