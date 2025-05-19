@@ -7,14 +7,24 @@ export async function POST(request) {
         httpOnly: false,
         maxAge: 99999999999999999999
     }
-    const item = {BakedGood, BakedGoodId, variation, quantity}
-    console.log(item)
     
     const cookie = await cookies()
 
     const rawItems = cookie.get('items')?.value;
     var items = rawItems ? JSON.parse(decodeURIComponent(rawItems)) : []
 
+    var cartId
+    if (items.length === 0) {
+        cartId = 0
+    } else {
+        const lastItem = items[items.length -1]
+        cartId = lastItem.cartId + 1
+    }
+
+    const item = {BakedGood, BakedGoodId, variation, quantity, cartId}
+
+    console.log("yes")
+    console.log(item.cartId)
     items.push(item)
 
     const cookieStore = await cookies();

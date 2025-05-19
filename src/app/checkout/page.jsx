@@ -5,11 +5,11 @@ export default function Checkout() {
     const [cart, setCart] = useState([])
     const [checkout, setCheckout] = useState([])
     const [cost, setCost] = useState([])
-    const [error, setError] = useState(null)
+    const [error, setError] = useState("")
 
-    const [email, setEmail] = useState(null)
-    const [fullName, setFullName] = useState(null)
-    const [startDate, setStartDate] = useState(null)
+    const [email, setEmail] = useState("")
+    const [fullName, setFullName] = useState("")
+    const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState(null)
     const [pickupTime, setPickupTime] = useState(null)
 
@@ -25,7 +25,8 @@ export default function Checkout() {
                     throw new Error(response.status)
                 }
                 const json = await response.json()
-                setCart(json)
+                setCart(json.items)
+                setCost(json.total)
             } catch (e) {
                 setError(e)
             } finally {
@@ -60,6 +61,7 @@ export default function Checkout() {
 
     return (
         <div className='size-full'>
+            {console.log(cart)}
             <div className='p-5 pb-0'>
                 <p>How to pay is to either E-transfer or with cash<br/> apon pick-up or drop off</p>
             </div>
@@ -68,14 +70,14 @@ export default function Checkout() {
                     <div className='flex flex-col basis-1/4 p-5'>
                         <div className='w-full h-50 bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 border-1 border-gray-200'>
                             <p>Total <br/></p>
-                            <p>{cart.cost}</p>
+                            <p>{cost}</p>
                             
                         </div>
                     </div>
                     <div className='flex flex-col basis-3/4 p-5'>
                         <div className='bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 border-1 border-gray-200'>
                                 {cart.map (BakedGood => (
-                                    <div key={BakedGood.item.Different_varients[BakedGood.selected].Variation_name} className='flex flex-row p-2'>
+                                    <div key={BakedGood.cartId} className='flex flex-row p-2'>
                                         <img
                                             src={`/Baked_Goods/${BakedGood.item.Thumbnail}`}
                                             style={{height: 150, width: 105.0591833}}
@@ -98,7 +100,7 @@ export default function Checkout() {
                     <form className='bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 border-1 border-gray-200'>
                         <div className="mb-4">
                             <label htmlFor="Email_Address" className="block text-gray-700 text-sm mb-2">Email Address</label>
-                            <input 
+                            <input
                                 type="email" id="Email_Address" required className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                                 onChange={(e) => setEmail(e.target.value)}
                                 value = { email }

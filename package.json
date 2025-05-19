@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prod": "next dev",
+    "linux": "sudo npm run prod & sudo python3 curl.py"
   },
   "dependencies": {
     "bootstrap": "^5.3.5",
