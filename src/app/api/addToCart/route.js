@@ -28,7 +28,7 @@ export async function POST(request) {
     items.push(item)
 
     const cookieStore = await cookies();
-        cookieStore.set('items', encodeURIComponent(JSON.stringify(items)), cookieOptions)
+    cookieStore.set('items', encodeURIComponent(JSON.stringify(items)), cookieOptions)
     return NextResponse.json({ message: "signed in"}, {status: 201}); 
 }
 
