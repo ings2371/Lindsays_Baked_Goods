@@ -39,13 +39,11 @@ export default function Home() {
           return <div>Error: {error.message}</div>
       }
 
-      const onlySeas = BakedGoods.filter(products => products.Season !== 'no season')
+          const onlySeas = BakedGoods.filter(products => products.Season !== 'no season')
   return (
     <>
-
-        
-        
         <div>
+        <p style={{textAlign: "center"}}> Seasonal goods</p>
       {BakedGoods ? (
         <div className="flex">
           {/* maps the mock data*/}
