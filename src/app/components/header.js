@@ -3,11 +3,37 @@ import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
 import Image from "next/image";
 
-
-//https://stackoverflow.com/questions/67806445/dropdown-menu-next-js-tailwind-css
-//reference link of where i got drop down
 const Header = () => {
+      const [signed, setSigned] = useState(null)
+      const [error, setError] = useState(null)
 
+      useEffect(() => {
+        const Sign = async () =>{
+            try{
+                const set = await fetch("/api/GetSignCook", {
+                    cache: "no-store",
+                    method: "GET",
+                    credentials: "include"
+                })
+                if(!set.ok) {
+                      throw new Error(set.status)
+                  }
+                  const json = await set.json()
+                  // Ensure json is not null or undefined
+                if (json !== null && json !== undefined) {
+                    setSigned(json?.signed?.user || null); // Update state with the signed-in status (true/false or null)
+                } else {
+                    setSigned(false); // Handle case when the response is empty or malformed
+                }
+            } catch (e){
+                setError(e)
+            }
+        }
+        Sign();
+      }, [])
+
+    //https://stackoverflow.com/questions/67806445/dropdown-menu-next-js-tailwind-css
+    //reference link of where i got drop down
 	const [isOpen, setIsOpen] = useState(false);
 
     let menuRef = useRef();
@@ -76,7 +102,7 @@ const Header = () => {
                                 {/* links to all inventory page*/}
 							<Link href="/baked-goods" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     onClick={closeDropdown}>All Inventory</Link>
-                            </li>
+                            </li>                        
                         </ul>
                     </div>
                 )}
@@ -87,7 +113,13 @@ const Header = () => {
 
                 {/* links to checkout page*/}
 				<Link href="/checkout" className='p-1 sm:p-3 lg:p-5'>Checkout</Link>
-
+                    
+                {signed ? (
+                    typeof signed === 'string' && (
+                    <Link href={`/${signed}`} className="p-1 sm:p-3 lg:p-5">logged in</Link>
+                    )                ) : (
+                    <Link href="/" className="p-1 sm:p-3 lg:p-5">Seasonal Inventory</Link>
+                )}
 			</nav>
 		</header>
     

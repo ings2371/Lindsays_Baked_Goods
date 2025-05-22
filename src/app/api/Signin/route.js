@@ -20,8 +20,9 @@ export async function POST(request) {
         }
 
             // Generate a JWT token
-        const token = jwt.sign({user: UserName, password: Password}, process.env.JWTSEC, {expiresIn: '2h'})
+        //const token = jwt.sign({user: UserName, password: Password}, process.env.JWTSEC, {expiresIn: '2h'})
 
+        const token =  jwt.sign({user: "new-Item"}, process.env.JWTSEC, {expiresIn: '2h'})
         const cookieOptions = {
             httpOnly: true,
             secure: true,
@@ -31,7 +32,7 @@ export async function POST(request) {
         //store token
         //https://nextjs.org/docs/app/api-reference/functions/cookies
         const cookieStore = await cookies();
-        cookieStore.set('jwt', token, cookieOptions)
+        cookieStore.set('signedIn', token, cookieOptions)
 
         //successful login
         return NextResponse.json({ message: "signed in"}, {status: 201});  
