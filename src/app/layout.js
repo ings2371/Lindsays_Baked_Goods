@@ -21,11 +21,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`antialiased`} >
+      <body  >
 
-        <div className="size-full max-h-screen grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 gap-16 pt-20 sm:pt-20 sm:pl-0 sm:pr-0 md:p-20 font-[family-name:var(--font-geist-sans)]">
-          <Header className="pl-0"/>
+        <div className="size-full max-h-screen grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen font-[family-name:var(--font-geist-sans)] pt-20 sm:pt-20">
+          <Header className="pl-0 w-full" />
+          <div className="pb-20 gap-16 sm:pl-0 sm:pr-0 md:p-20">
             {children}
+          </div>
           <Footer />
           
 
