@@ -15,15 +15,13 @@ export default async function Page() {
   return (
     <div>
       {BakedGoods ? (
-        <div>
-        <div className="flex">
+        <div className="grid grid-cols-3 ">
             {BakedGoods.map (Baked_Good => (
                 <div key={Baked_Good._id} style={{padding: "16.5px"}}>
                     <Item Baked_Good={Baked_Good} />
                 </div>            
             ))}
         </div>
-    </div>
       ) : (
         <div>No data yet.</div>
       )} 

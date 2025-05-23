@@ -5,41 +5,41 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [BakedGoods, setBaked_Goods] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-          const fetchData = async () => {
-              setLoading(true)
-              try{
-                  const responce = await fetch("/api/baked_good", {
-                      cache: "no-store",
-                  });
-                  if(!responce.ok) {
-                      throw new Error(responce.status)
-                  }
-                  const json = await responce.json()
-                  setBaked_Goods(json)
-              } catch (e) {
-                  setError(e)
-              } finally {
-                  setLoading(false)
-                  
-              }
-          }
-          fetchData();
-          
-      }, [])
-  
-  
-      if (loading) {
-          return <div>loading...</div>
-      }
-      if (error) {
-          return <div>Error: {error.message}</div>
-      }
+    const fetchData = async () => {
+        setLoading(true)
+        try{
+            const responce = await fetch("/api/baked_good", {
+                cache: "no-store",
+            });
+            if(!responce.ok) {
+                throw new Error(responce.status)
+            }
+            const json = await responce.json()
+            setBaked_Goods(json)
+        } catch (e) {
+            setError(e)
+        } finally {
+            setLoading(false)
+            
+        }
+    }
+    fetchData();
+  }, [])
 
-          const onlySeas = BakedGoods.filter(products => products.Season !== 'no season')
+
+  if (loading) {
+    return <div>loading...</div>
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>
+  }
+
+  const onlySeas = BakedGoods.filter(products => products.Season !== 'no season')
+
   return (
     <>
         <div>
