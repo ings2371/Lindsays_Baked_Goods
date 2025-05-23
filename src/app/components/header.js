@@ -110,15 +110,12 @@ const Header = () => {
 
                 {/* links to contact page*/}
                 <Link href="/contact" className='p-1 sm:p-3 lg:p-5'>Contact</Link>
-
-                {/* links to checkout page*/}
-				<Link href="/checkout" className='p-1 sm:p-3 lg:p-5'>Checkout</Link>
                     
                 {signed ? (
                     typeof signed === 'string' && (
                     <Link href={`/${signed}`} className="p-1 sm:p-3 lg:p-5">logged in</Link>
                     )                ) : (
-                    <Link href="/" className="p-1 sm:p-3 lg:p-5">Seasonal Inventory</Link>
+				    <Link href="/checkout" className='p-1 sm:p-3 lg:p-5'>Checkout</Link>
                 )}
 			</nav>
 		</header>

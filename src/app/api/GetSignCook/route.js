@@ -14,6 +14,12 @@ export async function GET(request) {
         } catch (e){
             signed = null;
             console.error('JWT verification failed:', e);
+
+            
+            cookie.set('signedIn', '', {
+                path: '/',
+                maxAge: 0, //tells browser to delete
+            })
         }
     }
 

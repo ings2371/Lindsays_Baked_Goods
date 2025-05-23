@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [BakedGoods, setBaked_Goods] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
           const fetchData = async () => {

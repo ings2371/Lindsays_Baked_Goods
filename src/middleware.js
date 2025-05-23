@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-const excludedPaths = ["/", "/baked-goods", "/contact", "/checkout"]
+const excludedPaths = ["/", "/baked-goods", "/contact", "/checkout", "/new-Item"]
 const excludePathsInclude = ["/api", "/_next", "/favicon", "/logo"]
 
 const getIp = (request) => {
@@ -17,6 +17,13 @@ const getIp = (request) => {
 export function middleware(request) {
   const { pathname } = request.nextUrl
 
+   if (pathname === "/new-Item") {
+    const token = request.cookies.get('signedIn')?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
+  
   // Skip logging if the path is excluded
   let unknownPath = true
   for (const path of excludedPaths) {
