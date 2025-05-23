@@ -6,6 +6,13 @@ export async function POST(request) {
         const { email, fullName, startDate, endDate, pickupTime, cart, cost } = body;
 
         const resend = new Resend('re_5XLJeyLJ_5ZcDtAXUKFLuW3YRg3HujnoR');
+        
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth() + 1; // Month is 0-indexed
+        const day = currentDate.getDate();
+        const formattedDate = day + "/" + month + "/" + year
+        console.log(formattedDate);
 
         // Build each cart item as an HTML block
         const cartItems = `
@@ -40,21 +47,56 @@ export async function POST(request) {
 
         // Full email HTML
         const htmlContent = `
-        
-                <div style="width: 50px; float: left; display: inline-block;">
-                    <p style="width: 50px;">Sales Receipt</p>
-                </div>
-                <div style="border-top: 2px solid #5A4FE8; width: 45%; display: inline-block;">
-                    <p>Order received from <strong>${fullName}</strong></p>
-                    <p>Email: ${email}</p>
-                    <p>Pickup Date: ${startDate} to ${endDate}</p>
-                    <p>Pickup Time: ${pickupTime}</p>
-                    <div style="width: 100%">${cartItems}</div>
-                    <p><strong>Total: $${cost}</strong></p>
-                </div>
-
+            <div style="font-size: 85%;">
+            <table>
+                <tr>
+                    <td style="vertical-align: top;">
+                        <div style="width: 50px; height: 100%; float: left; display: inline-block;">
+                            <p style="width: 50px;">Sales Receipt</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="width: 100%; border-top: 2px solid #5A4FE8; display: inline-block;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td>SOLD TO</td>
+                                    <td>DATE</td>
+                                    <td>RECEIPT #</td>
+                                </tr>
+                                <tr>
+                                    <td>${fullName}</td>
+                                    <td>${formattedDate}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>${email}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="width: 100%; border-top: 2px solid #5A4FE8; display: inline-block;">
+                            <p>Pickup Date: ${startDate} to ${endDate}</p>
+                            <p>Pickup Time: ${pickupTime}</p>
+                        </div>
+                        <div style="width: 100%; border-top: 2px solid #5A4FE8; display: inline-block;">
+                            <table style="width: 100%">
+                                <tr>
+                                    <th></th>
+                                    <th>DESCRIPTION</th>
+                                    <th>VARIANT</th>
+                                    <th>QUANTITY</th>
+                                    <th>LINE TOTAL</th>
+                                </tr>
+                                ${cartItems}
+                            </table>
+                            <p><strong>Total: $${cost}</strong></p>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            </table>
+                
+                
         `;
-        console.log(cartItems)
         var response = await resend.emails.send({
             from: 'order@mail.lindsayssweettreats.com',
             to: 'curtisjlbutler@gmail.com',
