@@ -3,49 +3,69 @@ import { Resend } from 'resend';
 export async function POST(request) {
     try {
         const body = await request.json();
-        const { email, fullName, startDate, endDate, pickupTime, cart } = body;
+        const { email, fullName, startDate, endDate, pickupTime, cart, cost } = body;
 
         const resend = new Resend('re_5XLJeyLJ_5ZcDtAXUKFLuW3YRg3HujnoR');
 
         // Build each cart item as an HTML block
-        const cartItems = cart.map((BakedGood) => {
-            const item = BakedGood.item;
-            const variation = item.Different_varients[BakedGood.selected];
-            const price = variation.Prices[0].Cost * BakedGood.quantity;
-            const imageUrl = `https://lindsayssweettreats.com/Baked_Goods/${item.Thumbnail}`; // Replace with actual domain
+        const cartItems = `
+            <table style="width: 100%; border-collapse: collapse;">
+                ${cart.map((BakedGood) => {
+                    const item = BakedGood.item;
+                    const variation = item.Different_varients[BakedGood.selected];
+                    const price = variation.Prices[0].Cost * BakedGood.quantity;
+                    const imageUrl = `https://lindsayssweettreats.com/Baked_Goods/${item.Thumbnail}`;
 
-            return `
-                <div>
-                    <img src="${imageUrl}" width="100" height="140" />
-                    <p><strong>${item.Baked_Name}</strong></p>
-                    <p>Variation: ${variation.Variation_name}</p>
-                    <p>Quantity: ${BakedGood.quantity}</p>
-                    <p>Price: $${price.toFixed(2)}</p>
-                </div>
-            `;
-        }).join('');
-
-        // Calculate total cost
-        let totalCost = 0;
-
-        for (const BakedGood of cart) {
-            const variation = BakedGood.item.Different_varients[BakedGood.selected];
-            totalCost += variation.Prices[0].Cost * BakedGood.quantity;
-        }
+                    return `
+                        <tr style="border-top: 2px solid rgb(182, 217, 215); width: 45%;">
+                            <td style="padding: 5px;">
+                                <img src="${imageUrl}" width="25" height="35" style="object-fit: cover;" />
+                            </td>
+                            <td style="padding-right: 20px;">
+                                <p><strong>${item.Baked_Name}:</strong></p>
+                            </td>
+                            <td style="padding-right: 20px;">
+                                <p>${variation.Variation_name}</p>
+                            </td>
+                            <td style="padding-right: 20px;">
+                                <p>Quantity: ${BakedGood.quantity}</p>
+                            <td style="padding-right: 20px;">
+                                <p>Price: $${price.toFixed(2)}</p>
+                            </td>
+                        </tr>
+                    `;
+                }).join('')}
+            </table>
+        `;
 
         // Full email HTML
         const htmlContent = `
-            <p>Order received from <strong>${fullName}</strong></p>
-            <p>Email: ${email}</p>
-            <p>Pickup Date: ${startDate} to ${endDate}</p>
-            <p>Pickup Time: ${pickupTime}</p>
-            <div>${cartItems}</div>
-            <p><strong>Total: $${totalCost.toFixed(2)}</strong></p>
+        
+                <div style="width: 50px; float: left; display: inline-block;">
+                    <p style="width: 50px;">Sales Receipt</p>
+                </div>
+                <div style="border-top: 2px solid #5A4FE8; width: 45%; display: inline-block;">
+                    <p>Order received from <strong>${fullName}</strong></p>
+                    <p>Email: ${email}</p>
+                    <p>Pickup Date: ${startDate} to ${endDate}</p>
+                    <p>Pickup Time: ${pickupTime}</p>
+                    <div style="width: 100%">${cartItems}</div>
+                    <p><strong>Total: $${cost}</strong></p>
+                </div>
+
         `;
         console.log(cartItems)
-        const response = await resend.emails.send({
-            from: 'onboarding@resend.dev', // Replace with verified sender if needed
+        var response = await resend.emails.send({
+            from: 'order@mail.lindsayssweettreats.com',
             to: 'curtisjlbutler@gmail.com',
+            subject: 'Order Confirmation',
+            html: htmlContent,
+        });
+        console.log("Resend Response:", response);
+
+        response = await resend.emails.send({
+            from: 'order@mail.lindsayssweettreats.com',
+            to: email,
             subject: 'Order Confirmation',
             html: htmlContent,
         });

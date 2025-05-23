@@ -12,6 +12,7 @@ export default function Checkout() {
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState(null)
     const [pickupTime, setPickupTime] = useState(null)
+    const [comments, setComments] = useState("")
 
     useEffect(() => {
         const fetchCart = async () => {
@@ -49,7 +50,9 @@ export default function Checkout() {
                 'startDate': startDate,
                 'endDate': endDate,
                 'pickupTime': pickupTime,
-                'cart': cart
+                'cart': cart,
+                'cost': cost,
+                'comments': comments
             })
         })
         .catch(error => {
@@ -143,6 +146,14 @@ export default function Checkout() {
                                     value = { pickupTime }
                                 />
                         
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="Comments" className="block text-gray-700 text-sm mb-2">Comments</label>
+                            <textarea
+                                id="Comments" placeholder='e.g. "Cookies should be gluten free"' name="message" required className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' rows="5" cols="30" 
+                                onChange={(e) => setComments(e.target.value)}
+                                value = { comments }
+                            />
                         </div>
                         <div className="float-right mb-4">
                         <button
