@@ -5,7 +5,8 @@ export async function POST(request) {
         const body = await request.json();
         const { email, fullName, startDate, endDate, pickupTime, cart, cost } = body;
 
-        const resend = new Resend('re_5XLJeyLJ_5ZcDtAXUKFLuW3YRg3HujnoR');
+        // const resend = new Resend('re_5XLJeyLJ_5ZcDtAXUKFLuW3YRg3HujnoR');
+        const resend = new Resend('re_fwLHhgka_AgTdTyqZCVpE24QAaDBo1z9o');
         
         const currentDate = new Date();
         const year = currentDate.getFullYear();
@@ -16,7 +17,6 @@ export async function POST(request) {
 
         // Build each cart item as an HTML block
         const cartItems = `
-            <table style="width: 100%; border-collapse: collapse;">
                 ${cart.map((BakedGood) => {
                     const item = BakedGood.item;
                     const variation = item.Different_varients[BakedGood.selected];
@@ -24,25 +24,24 @@ export async function POST(request) {
                     const imageUrl = `https://lindsayssweettreats.com/Baked_Goods/${item.Thumbnail}`;
 
                     return `
-                        <tr style="border-top: 2px solid rgb(182, 217, 215); width: 45%;">
-                            <td style="padding: 5px;">
+                        <tr style="border-top: 2px solid rgb(182, 217, 215); width: 100%;">
+                            <td>
                                 <img src="${imageUrl}" width="25" height="35" style="object-fit: cover;" />
                             </td>
-                            <td style="padding-right: 20px;">
+                            <td>
                                 <p><strong>${item.Baked_Name}:</strong></p>
                             </td>
-                            <td style="padding-right: 20px;">
+                            <td>
                                 <p>${variation.Variation_name}</p>
                             </td>
-                            <td style="padding-right: 20px;">
+                            <td>
                                 <p>Quantity: ${BakedGood.quantity}</p>
-                            <td style="padding-right: 20px;">
+                            <td>
                                 <p>Price: $${price.toFixed(2)}</p>
                             </td>
                         </tr>
                     `;
                 }).join('')}
-            </table>
         `;
 
         // Full email HTML
@@ -77,10 +76,10 @@ export async function POST(request) {
                             <p>Pickup Date: ${startDate} to ${endDate}</p>
                             <p>Pickup Time: ${pickupTime}</p>
                         </div>
-                        <div style="width: 100%; border-top: 2px solid #5A4FE8; display: inline-block;">
+                        <div style="border-collapse: collapse; width: 100%; border-top: 2px solid #5A4FE8; display: inline-block;">
                             <table style="width: 100%">
-                                <tr>
-                                    <th></th>
+                                <tr style="text-align: left;">
+                                    <th>IMAGE</th>
                                     <th>DESCRIPTION</th>
                                     <th>VARIANT</th>
                                     <th>QUANTITY</th>
@@ -88,6 +87,7 @@ export async function POST(request) {
                                 </tr>
                                 ${cartItems}
                             </table>
+                            
                             <p><strong>Total: $${cost}</strong></p>
                         </div>
                     </div>
@@ -98,15 +98,15 @@ export async function POST(request) {
                 
         `;
         var response = await resend.emails.send({
-            from: 'order@mail.lindsayssweettreats.com',
-            to: 'curtisjlbutler@gmail.com',
+            from: 'onboarding@resend.dev',
+            to: 'cakefordaysboy@gmail.com',
             subject: 'Order Confirmation',
             html: htmlContent,
         });
         console.log("Resend Response:", response);
 
         response = await resend.emails.send({
-            from: 'order@mail.lindsayssweettreats.com',
+            from: 'onboarding@resend.dev',
             to: email,
             subject: 'Order Confirmation',
             html: htmlContent,

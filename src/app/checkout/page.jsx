@@ -73,7 +73,7 @@ export default function Checkout() {
                     <div className='flex flex-col basis-1/4 p-5'>
                         <div className='w-full h-50 bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 border-1 border-gray-200'>
                             <p>Total <br/></p>
-                            <p>{cost}</p>
+                            <p>${cost}</p>
                             
                         </div>
                     </div>
