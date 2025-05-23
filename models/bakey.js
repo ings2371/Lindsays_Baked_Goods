@@ -20,10 +20,6 @@ const bakedGoodSchema = new mongoose.Schema({
                 type: String,
                 required: [true, "item needs a name"]
             },
-            Image: [{
-                type: String,
-                required: [true, "item needs a image"]
-            }],
             Prices: [
                 {
                     Quantity: {
@@ -43,12 +39,11 @@ const bakedGoodSchema = new mongoose.Schema({
                         required: [true, "item needs a list of allergies that the product may have"]
                     },
                     Can_Remove: {
-                        type: Boolean,
-                        required: [true, "needs to say if you can bake around specific allergies"]
+                        type: Boolean
                     }
                 }
             ],
-            Unit : {
+            Unit: {
                 type: String,
                 required: [true, "needs a unit of messurement"]
             }

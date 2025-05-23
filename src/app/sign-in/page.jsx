@@ -23,7 +23,7 @@ export default function Sign() {
                 body: JSON.stringify({UserName, Password})
             })
             if (res.ok) {
-                router.push('/')
+                location.href = "http://localhost:3000"
             } else {
                 throw new Error('Failed signin')
             }
