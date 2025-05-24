@@ -23,7 +23,7 @@ export default function Sign() {
                 body: JSON.stringify({UserName, Password})
             })
             if (res.ok) {
-                location.href = "http://192.168.2.130:3000"
+                location.href = "http://localhost:3000"
             } else {
                 throw new Error('Failed signin')
             }

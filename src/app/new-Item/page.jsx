@@ -87,7 +87,7 @@ export default function newItem(){
                 body: JSON.stringify(newItem),
             })
             if (res.ok) {
-                router.push('/')
+                location.href = "http://localhost:3000"
             } else {
                 throw new Error('Failed upload')
             }
