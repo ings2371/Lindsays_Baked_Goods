@@ -33,14 +33,17 @@ export default async function BakedGoodPage({ params }) {
   return (
         <div>
             <div className='w-100 w-[100vw] mdlg:w-[1px] md:w-[55vw] lg:min-w-160 max-w-250'>
-                <div className="box-shadow">
+                <div>
                     <div className='flex flex-row'>
+                      <div>
                         <img
-                        src={`/Baked_Goods/${BakedGood.Thumbnail}`}
-                        // style={{height: 350, width: 300}}
-                        className='w-18.7 h-26 max-w-18.7 md:h-53 md:w-37 lg:h-107 lg:w-75 lg:min-w-75'
+                          src={`/Baked_Goods/${BakedGood.Thumbnail}`}
+                          // style={{height: 350, width: 300}}
+                          className='w-18.7 h-26 max-w-18.7 md:h-53 md:w-37 lg:h-107 lg:w-75 lg:min-w-75'
                         />
-                        <div className='basis-full flex-col'>
+                      </div>
+                        
+                        <div>
                             <p className='p-5 md:text-[150%] lg:text-[200%]'>{BakedGood.Baked_Name}</p>
                             <p className='p-5'>{BakedGood.Item_Description}</p>
                         </div>

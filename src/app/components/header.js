@@ -89,13 +89,13 @@ const Header = () => {
                             <li>
 
                                 {/* links to regular inventory page*/}
-								<Link href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+								<Link href="/baked-goods/nonSeasonal" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     onClick={closeDropdown} >Regular Inventory</Link>
                             </li>
 
                             <li>
                                 {/* links to seasonal inventory page*/}
-								<Link href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+								<Link href="/baked-goods/seasonal" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     onClick={closeDropdown}>Seasonal Inventory</Link>
                             </li>
                             <li>

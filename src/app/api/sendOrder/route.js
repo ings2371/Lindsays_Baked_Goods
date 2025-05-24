@@ -24,7 +24,10 @@ export async function POST(request) {
                     const imageUrl = `https://lindsayssweettreats.com/Baked_Goods/${item.Thumbnail}`;
 
                     return `
-                        <tr style="border-top: 2px solid rgb(182, 217, 215); width: 100%;">
+                        <tr>
+                            <td colspan="5" style="border-top: 2px solid rgb(182, 217, 215);"></td>
+                        </tr>
+                        <tr>
                             <td>
                                 <img src="${imageUrl}" width="25" height="35" style="object-fit: cover;" />
                             </td>
@@ -36,6 +39,7 @@ export async function POST(request) {
                             </td>
                             <td>
                                 <p>Quantity: ${BakedGood.quantity}</p>
+                            </td>
                             <td>
                                 <p>Price: $${price.toFixed(2)}</p>
                             </td>
@@ -76,7 +80,7 @@ export async function POST(request) {
                             <p>Pickup Date: ${startDate} to ${endDate}</p>
                             <p>Pickup Time: ${pickupTime}</p>
                         </div>
-                        <div style="border-collapse: collapse; width: 100%; border-top: 2px solid #5A4FE8; display: inline-block;">
+                        <table style="border-collapse: collapse; width: 100%; border-top: 2px solid #5A4FE8;">
                             <table style="width: 100%">
                                 <tr style="text-align: left;">
                                     <th>IMAGE</th>

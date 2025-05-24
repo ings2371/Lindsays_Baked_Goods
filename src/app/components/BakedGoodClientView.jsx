@@ -41,15 +41,15 @@ export default function BakedGoodClientView({ BakedGood }) {
 
   return (
     <div className='flex flex-row'>
-        <div className='flex flex-col p-5 basis-1/3'>
+        <div className='flex flex-col p-5 pt-0 sm:pt-5 basis-1/2 sm:basis-1/3'>
             <p>Allergens:</p>
             {BakedGood.Different_varients[variation].Different_Allergens.map (Allergen => (
                 <p className='p-px pl-4' key={Allergen.Allergen_Name}>{Allergen.Allergen_Name}</p>
             ))}
         </div>
         <div className='basis-2/3'>
-            <div className='flex flex-col sm:flex-row basis-auto'>
-                <div className="basis-1/3 relative inline-block p-0 md:p-5" >
+            <div className='flex flex-col sm:flex-row basis-1/2 sm:basis-auto'>
+                <div className="basis-1/3 relative inline-block p-0 md:p-5 pb-5" >
                     <p>Variation</p>
                     <button
                         type="button"
@@ -74,14 +74,14 @@ export default function BakedGoodClientView({ BakedGood }) {
                         </div>
                     )}
                 </div>
-                <div className='flex flex-col basis-1/3'>
+                <div className='flex flex-col basis-1/3 pb-5 pt-0 sm:pt-5'>
                     <div className='p-0 lg:p-5'>
                       <p className=''>${BakedGood.Different_varients[variation].Prices[0].Cost} per {BakedGood.Different_varients[variation].Prices[0].Quantity} units</p>
                       
                       <p>One unit is {BakedGood.Different_varients[variation].Unit}</p>
                     </div>
                 </div>
-                <div className='flex flex-col basis-1/3'>
+                <div className='flex flex-col basis-1/3 pt-0 sm:pt-5'>
                 <p>
                   Quantity
                 </p>
