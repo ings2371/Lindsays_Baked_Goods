@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 //this is a work in progress
 //endpoint to login
 export async function POST(request) {
+    console.log("yes")
     try{
       const {UserName, Password} = await request.json();
     

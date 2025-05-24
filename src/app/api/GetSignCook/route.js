@@ -24,5 +24,6 @@ export async function GET(request) {
     }
 
     var object = {signed}
+    console.log(object)
     return NextResponse.json(object);
 }

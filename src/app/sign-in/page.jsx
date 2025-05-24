@@ -15,7 +15,7 @@ export default function Sign() {
         console.log({UserName, Password})
 
         try {
-            const res = await fetch("http://localhost:3000/api/Signin", {
+            const res = await fetch("/api/Signin", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
@@ -23,7 +23,7 @@ export default function Sign() {
                 body: JSON.stringify({UserName, Password})
             })
             if (res.ok) {
-                location.href = "http://localhost:3000"
+                location.href = "http://192.168.2.130:3000"
             } else {
                 throw new Error('Failed signin')
             }
