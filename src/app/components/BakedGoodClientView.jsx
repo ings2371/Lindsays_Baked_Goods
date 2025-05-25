@@ -5,6 +5,7 @@ export default function BakedGoodClientView({ BakedGood }) {
   const [variation, setVariation] = useState(0)
   const [quantity, setQuantity] = useState(1)
   const [isOpen, setIsOpen] = useState(false)
+  const [qtyPrice, setQTYPrice] = useState(0)
 
   const handleSetVariation = (value) => {
     setVariation(value)
@@ -32,9 +33,17 @@ export default function BakedGoodClientView({ BakedGood }) {
 
   const handleSetQuantity = (qty) => {
     setQuantity(qty)
-    for (item of BakedGood.Different_varients[variation].Prices) {
-      console.log(item)
-    }
+    let index = 0
+
+    for (const item of BakedGood.Different_varients[variation].Prices) {
+      if (item.Quantity > qty) {
+        break
+      } else if (item.Quantity <= qty) {
+        setQTYPrice(index)
+        
+      }
+      index++
+    }      
   }
 
   const handleAddToCart = async (BakedGood, variation) => {
@@ -94,7 +103,7 @@ export default function BakedGoodClientView({ BakedGood }) {
                 </div>
                 <div className='flex flex-col basis-1/3 pb-5 pt-0 sm:pt-5'>
                     <div className='p-0 lg:p-5'>
-                      <p className=''>${BakedGood.Different_varients[variation].Prices[0].Cost} per {BakedGood.Different_varients[variation].Prices[0].Quantity} units</p>
+                      <p className=''>${BakedGood.Different_varients[variation].Prices[qtyPrice].Cost} per {BakedGood.Different_varients[variation].Prices[qtyPrice].Quantity} units</p>
                       
                       <p>One unit is {BakedGood.Different_varients[variation].Unit}</p>
                     </div>

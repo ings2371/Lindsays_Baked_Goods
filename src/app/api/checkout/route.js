@@ -8,26 +8,30 @@ export async function GET(request) {
 
     const rawItems = cookie.get('items')?.value;
     var items = rawItems ? JSON.parse(decodeURIComponent(rawItems)) : []
-    console.log(items)
 
     var fullItems = []
 
     for (var BakedGood of items) {
         var item = await Baked_Goods.findOne({_id: BakedGood.BakedGoodId});
-        var price
-        // console.log(item.Different_varients[BakedGood.variation].Prices)
-        for (cost of item.Different_varients[BakedGood.variation].Prices) {
-            // console.log(cost.Cost)
-            if (BakedGood.quantity < cost.Quantity) {
-                break
-            } else if (BakedGood.quantity >= cost.Quantity) {
-                price = cost.Cost
-                break
-            } else {
-                price = 9
+        var price = 0
+        var stop = 99999
+        var qty = BakedGood.quantity
+        const prices = item.Different_varients[BakedGood.variation].Prices
+        var index = prices.length
+        while (qty > 0 && stop) {
+            console.log(index)
+            console.log(qty)
+            if (qty >= prices[index-1].Quantity) {
+                price += prices[index-1].Cost
+                qty -= prices[index-1].Quantity
+            } else if (qty < prices[index-1].Quantity) {
+                index--
             }
+            
+            stop--
         }
-        var cost = price * BakedGood.quantity
+        
+        var cost = price
 
         var object = {item, "selected": BakedGood.variation, "quantity": BakedGood.quantity, "cost": cost, "cartId": BakedGood.cartId}
         fullItems = [...fullItems, object]
