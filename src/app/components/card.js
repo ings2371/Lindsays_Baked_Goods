@@ -16,7 +16,7 @@ const Item = ({Baked_Good}) => {
 
                         <p style={{textAlign: "center" }} className='w-18.5 md:w-37 lg:w-56 text-wrap text-sm md:text-lg lg:text-2xl' >
                             {Baked_Good.Baked_Name} <br/>
-                            {Baked_Good.Different_varients[0].Prices[0].Cost}
+                            ${Baked_Good.Different_varients[0].Prices[0].Cost}.00
                             
                         </p>
                     </div>
