@@ -100,7 +100,7 @@ const Header = () => {
                             </li>
                             <li>
                                 {/* links to all inventory page*/}
-							<Link href="/baked-goods" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+							<Link href="/baked-goods" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100S"
                                     onClick={closeDropdown}>All Inventory</Link>
                             </li>                        
                         </ul>
@@ -113,7 +113,7 @@ const Header = () => {
                     
                 {signed ? (
                     typeof signed === 'string' && (
-                    <Link href={`/${signed}`} className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-lg lg:text-2xl inline-flex items-center">logged in</Link>
+                    <Link href={`/${signed}`} className="px-4 ml-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-lg lg:text-2xl inline-flex items-center">logged in</Link>
                     )                ) : (
 				    <Link href="/checkout" className='px-4 ml-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-lg lg:text-2xl inline-flex items-center'>Checkout</Link>
                 )}
