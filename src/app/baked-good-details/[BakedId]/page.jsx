@@ -35,7 +35,7 @@ export default async function BakedGoodPage({ params }) {
             <div className='w-100 w-[100vw] mdlg:w-[1px] md:w-[55vw] lg:min-w-160 max-w-250'>
                 <div>
                     <div className='flex flex-row'>
-                      <div className='w-24 h-26 md:h-53 md:w-48 lg:h-107 lg:w-97.5 overflow-hidden'>
+                      <div className='w-24 min-w-24 h-26 md:h-53 md:w-48 md:min-w-48 lg:h-107 lg:w-97.5 lg:min-w-97 overflow-hidden'>
                         <img
                           src={`/Baked_Goods/${BakedGood.Thumbnail}`}
                           // style={{height: 350, width: 300}}
