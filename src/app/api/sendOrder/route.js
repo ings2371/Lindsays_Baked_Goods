@@ -28,6 +28,9 @@ export async function POST(request) {
                             <td colspan="5" style="border-top: 2px solid rgb(182, 217, 215);"></td>
                         </tr>
                         <tr>
+                            <td style="text-align: center;">
+                                <p>${BakedGood.quantity}</p>
+                            </td>
                             <td>
                                 <img src="${imageUrl}" width="25" height="35" style="object-fit: cover;" />
                             </td>
@@ -38,10 +41,7 @@ export async function POST(request) {
                                 <p>${variation.Variation_name}</p>
                             </td>
                             <td>
-                                <p>Quantity: ${BakedGood.quantity}</p>
-                            </td>
-                            <td>
-                                <p>Price: $${price.toFixed(2)}</p>
+                                <p>$${price.toFixed(2)}</p>
                             </td>
                         </tr>
                     `;
@@ -83,10 +83,10 @@ export async function POST(request) {
                         <table style="border-collapse: collapse; width: 100%; border-top: 2px solid #5A4FE8;">
                             <table style="width: 100%">
                                 <tr style="text-align: left;">
+                                    <th style="text-align: center;">QTY</th>
                                     <th>IMAGE</th>
                                     <th>DESCRIPTION</th>
                                     <th>VARIANT</th>
-                                    <th>QUANTITY</th>
                                     <th>LINE TOTAL</th>
                                 </tr>
                                 ${cartItems}

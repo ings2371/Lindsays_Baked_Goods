@@ -14,6 +14,7 @@ export default async function Page() {
 
   return (
     <div>
+      <h1 className="text-center text-2xl">Baked goods</h1>
       {BakedGoods ? (
         <div>
           <div className="flex grid grid-cols-3 xl:grid-cols-4">

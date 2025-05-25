@@ -68,12 +68,12 @@ const Header = () => {
                 </div>
                 
                 {/* links to home page*/}
-				<Link href="/" className='p-1 sm:p-3 lg:p-5'>Home</Link>
+				<Link href="/" className='px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-lg lg:text-2xl inline-flex items-center'>Home</Link>
 
 				 <div className="relative inline-block p-1 sm:p-3 lg:p-5" style={{ fontSize: '1rem' }} ref={menuRef}>
                 <button
                     type="button"
-                    className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg lg:text-2xl inline-flex items-center"
+                    className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg lg:text-2xl inline-flex items-center"
                     onClick={toggleDropdown}
                 >
                     Inventory 
@@ -109,13 +109,13 @@ const Header = () => {
                 </div>
 
                 {/* links to contact page*/}
-                <Link href="/contact" className='p-1 sm:p-3 lg:p-5'>Contact</Link>
+                <Link href="/contact" className='px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-lg lg:text-2xl inline-flex items-center'>Contact</Link>
                     
                 {signed ? (
                     typeof signed === 'string' && (
-                    <Link href={`/${signed}`} className="p-1 sm:p-3 lg:p-5">logged in</Link>
+                    <Link href={`/${signed}`} className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-lg lg:text-2xl inline-flex items-center">logged in</Link>
                     )                ) : (
-				    <Link href="/checkout" className='p-1 sm:p-3 lg:p-5'>Checkout</Link>
+				    <Link href="/checkout" className='px-4 ml-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-lg lg:text-2xl inline-flex items-center'>Checkout</Link>
                 )}
 			</nav>
 		</header>

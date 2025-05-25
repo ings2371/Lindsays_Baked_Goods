@@ -13,16 +13,20 @@ export default async function Page({ params }) {
 
   const Data = await res.json();
   var BakedGoods
+  var isSeasonalText
 
   if (seasonal == "seasonal") {
+    isSeasonalText = "Seasonal"
     BakedGoods = Data.filter(products => products.Season !== 'no season')
   } else if (seasonal == "nonSeasonal") {
+    isSeasonalText = "Non Seasonal"
     BakedGoods = Data.filter(products => products.Season == 'no season')
   }
   
 
   return (
     <div>
+      <h1 className="text-center text-2xl">{isSeasonalText} Baked Goods</h1>
       {BakedGoods ? (
         <div>
         <div className="flex grid grid-cols-3 xl:grid-cols-4">
