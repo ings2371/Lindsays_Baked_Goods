@@ -18,7 +18,9 @@ export async function GET(request) {
         // console.log(item.Different_varients[BakedGood.variation].Prices)
         for (cost of item.Different_varients[BakedGood.variation].Prices) {
             // console.log(cost.Cost)
-            if (BakedGood.quantity <= cost.Quantity) {
+            if (BakedGood.quantity < cost.Quantity) {
+                break
+            } else if (BakedGood.quantity >= cost.Quantity) {
                 price = cost.Cost
                 break
             } else {
