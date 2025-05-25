@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 const footer = () => {
   return (
@@ -8,6 +9,8 @@ const footer = () => {
           <p style={{ textAlign: "center" }}>
             lindsayings78@gmail.com
           </p>
+          <Link href="/Privacy">Privacy Policy</Link>
+
       </div>
   </footer>
   )
