@@ -14,8 +14,8 @@ export default function Checkout() {
     const [pickupTime, setPickupTime] = useState("")
     const [comments, setComments] = useState("")
 
-    useEffect(() => {
-        const fetchCart = async () => {
+
+    const fetchCart = async () => {
             // setLoading(true)
             try{
                 const response = await fetch("/api/checkout", {
@@ -34,9 +34,29 @@ export default function Checkout() {
                 // setLoading(false)
             }
         }
+    useEffect(() => {
         fetchCart();
         
     }, [])
+
+    const removeItem = async (cartId) => {
+        try{
+        const response = await fetch(`/api/addToCart/newcart/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ cartId })
+            })
+            if(!response.ok) {
+                throw new Error(response.status)
+            }   
+            await fetchCart();        
+        }catch(error) {
+            console.error(error)
+        }  
+ };
+
 
     const buyNow = async () => {
         const response = await fetch(`/api/sendOrder/`, {
@@ -102,6 +122,11 @@ export default function Checkout() {
                                             <div className='flex flex-col md:text-right pl-5 md:pl-0 basis-1/3'>
                                                 <p className='text-nowrap'>Quantity: {BakedGood.quantity}</p>
                                                 <p>Price: ${BakedGood.item.Different_varients[BakedGood.selected].Prices[0].Cost*BakedGood.quantity}</p>
+                                                <button className='p-5 bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded w-min text-nowrap'
+                                                 onClick={(e) => {
+                                                    e.preventDefault();
+                                                    removeItem(BakedGood.cartId);
+                                                }}>Remove</button>
                                             </div>
                                         </div>
                                     </div>
