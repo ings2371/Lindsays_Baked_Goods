@@ -11,40 +11,59 @@ export default function Home() {
   const imageList = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg']
 
   useEffect(() => {
-          const fetchData = async () => {
-              setLoading(true)
-              try{
-                  const responce = await fetch("/api/baked_good", {
-                      cache: "no-store",
-                  });
-                  if(!responce.ok) {
-                      throw new Error(responce.status)
-                  }
-                  const json = await responce.json()
-                  setBaked_Goods(json)
-              } catch (e) {
-                  setError(e)
-              } finally {
-                  setLoading(false)
-                  
-              }
-          }
-          fetchData();
-          
-      }, [])
+    const fetchData = async () => {
+        setLoading(true)
+        try{
+            const responce = await fetch("/api/baked_good", {
+                cache: "no-store",
+            });
+            if(!responce.ok) {
+                throw new Error(responce.status)
+            }
+            const json = await responce.json()
+            setBaked_Goods(json)
+        } catch (e) {
+            setError(e)
+        } finally {
+            setLoading(false)
+            
+        }
+    }
+    fetchData();
+      
+  }, [])
   
   
-      if (loading) {
-          return <div>loading...</div>
-      }
-      if (error) {
-          return <div>Error: {error.message}</div>
-      }
+  if (loading) {
+    return <div>loading...</div>
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>
+  }
 
-          const onlySeas = BakedGoods.filter(products => products.Season !== 'no season')
+  const onlySeas = BakedGoods.filter(products => products.Season !== 'no season')
+  const pop = BakedGoods.filter(products => products.popular === true)
+
   return (
     <>
       <div>
+        <p style={{textAlign: "center"}} className='text-sm sm:text-2xl lg:text-2xl'> Popular Items</p>
+        {BakedGoods ? (
+          <div className="flex justify-center">
+            <div className="flex">
+              {/* only show 3 on screen */}
+                {pop.slice(0, 3).map (Baked_Good => (
+                    <div key={Baked_Good._id} style={{padding: "16.5px"}}>
+                        <Item Baked_Good={Baked_Good} />
+                    </div>
+                ))}
+            </div>
+          </div>
+          
+        ) : (
+          <div>No data yet.</div>
+        )} 
+
         <p style={{textAlign: "center"}} className='text-sm sm:text-2xl lg:text-2xl'> Seasonal goods</p>
         {BakedGoods ? (
           <div className="flex justify-center">

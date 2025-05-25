@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function BakedGoodClientView({ BakedGood }) {
   const [variation, setVariation] = useState(0)
@@ -11,6 +11,17 @@ export default function BakedGoodClientView({ BakedGood }) {
     closeDropdown()
   }
 
+  let menuRef = useRef();
+  useEffect(() =>{
+    let handler = (e) => {
+        if(!menuRef.current.contains(e.target)){
+        setIsOpen(false);
+        }
+    };
+
+    document.addEventListener("mousedown", handler);
+  })
+  
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -61,7 +72,7 @@ export default function BakedGoodClientView({ BakedGood }) {
                         </svg>
                     </button>
                     {isOpen && (
-                        <div className="origin-top-right absolute right-0 mt-2 w-44 shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <div ref={menuRef} className="origin-top-right absolute right-0 mt-2 w-44 shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                             <ul role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                 {BakedGood.Different_varients.map ((variant, index) => (
                                     <li key={variant.Variation_name}
