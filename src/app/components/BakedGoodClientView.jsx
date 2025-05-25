@@ -30,6 +30,13 @@ export default function BakedGoodClientView({ BakedGood }) {
     setIsOpen(false);
   };
 
+  const handleSetQuantity = (qty) => {
+    setQuantity(qty)
+    for (item of BakedGood.Different_varients[variation].Prices) {
+      console.log(item)
+    }
+  }
+
   const handleAddToCart = async (BakedGood, variation) => {
     const response = await fetch(`/api/addToCart/`, {
       method: 'POST',
@@ -98,7 +105,7 @@ export default function BakedGoodClientView({ BakedGood }) {
                 </p>
                 <input type="number"
                   value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={(e) => handleSetQuantity(e.target.value)}
                   id="quantity" name="quantity" min="1" className='max-w-17 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'>
                 </input>
                 <button
