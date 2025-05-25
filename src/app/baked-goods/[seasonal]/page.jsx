@@ -19,7 +19,7 @@ export default async function Page({ params }) {
     isSeasonalText = "Seasonal"
     BakedGoods = Data.filter(products => products.Season !== 'no season')
   } else if (seasonal == "nonSeasonal") {
-    isSeasonalText = "Non Seasonal"
+    isSeasonalText = "Regular"
     BakedGoods = Data.filter(products => products.Season == 'no season')
   }
   

@@ -65,8 +65,9 @@ export default function Checkout() {
     return (
         <div className='size-full'>
             {console.log(cart)}
+            <h1 className="text-center text-2xl">Checkout</h1>
             <div className='p-5 pb-0'>
-                <p>How to pay is to either E-transfer or with cash<br/> apon pick-up or drop off</p>
+                <p className="text-center">How to pay is to either E-transfer or with<br/> cash apon pick-up or drop off</p>
             </div>
             
             <div className='flex flex-col lg:flex-row'>
@@ -159,14 +160,14 @@ export default function Checkout() {
                         </div>
                         <div className="float-right mb-4">
                         <button
-                                    className='p-5 bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded w-min text-nowrap'
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        buyNow();
-                                    }}
-                                    >
-                                        Buy Now
-                                    </button>
+                        className='p-5 bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded w-min text-nowrap'
+                        onClick={(e) => {
+                            e.preventDefault();
+                            buyNow();
+                        }}
+                        >
+                            Buy Now
+                        </button>
                         </div>
                     </form>
                 </div>

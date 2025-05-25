@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <>
       <div>
-        <p style={{textAlign: "center"}} className='text-sm sm:text-2xl lg:text-2xl'> Popular Items</p>
+        <p className="text-center text-2xl"> Popular Items</p>
         {BakedGoods ? (
           <div className="flex justify-center">
             <div className="flex">
@@ -64,7 +64,7 @@ export default function Home() {
           <div>No data yet.</div>
         )} 
 
-        <p style={{textAlign: "center"}} className='text-sm sm:text-2xl lg:text-2xl'> Seasonal goods</p>
+        <p className="text-center text-2xl"> Seasonal goods</p>
         {BakedGoods ? (
           <div className="flex justify-center">
             <div className="flex">
@@ -81,7 +81,7 @@ export default function Home() {
           <div>No data yet.</div>
         )} 
 
-        <h1 style={{ textAlign: "center" }} className="text-sm sm:text-2xl lg:text-2xl">Cakes</h1>
+        <h1 className="text-center text-2xl">Cakes</h1>
         <p className="text-sm text-center mx-auto px-4 sm:px-6">
           If you want a custom cake for an event, contact the<br></br> seller about what you want and to talk about its price.
         </p>
