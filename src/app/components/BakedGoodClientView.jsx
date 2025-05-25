@@ -11,13 +11,13 @@ export default function BakedGoodClientView({ BakedGood }) {
     closeDropdown()
   }
 
-  let menuRef = useRef();
+  let menuRef = useRef(null);
   useEffect(() =>{
     let handler = (e) => {
-        if(!menuRef.current.contains(e.target)){
-        setIsOpen(false);
-        }
-    };
+    if (menuRef.current && !menuRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
 
     document.addEventListener("mousedown", handler);
   })
