@@ -62,7 +62,10 @@ export default function Checkout() {
         console.log(result)
     }
 
-    const today = new Date().toISOString().split('T')[0];
+
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 2);
+    const minDate = tomorrow.toISOString().split('T')[0];
 
 
     return (
@@ -130,7 +133,7 @@ export default function Checkout() {
                                     type="date" id="Date" className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  required
                                     onChange={(e) => setStartDate(e.target.value)}
                                     value = { startDate }
-                                    min={today}
+                                    min={minDate}
                                 />
                             </div>
                             <div className='flex items-center'>
@@ -142,7 +145,7 @@ export default function Checkout() {
                                 type="date" id="Date" className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  required
                                 onChange={(e) => setEndDate(e.target.value)}
                                 value = { endDate }
-                                min={startDate || today}
+                                min={startDate || minDate}
                             />
                             </div>
                         </div>
