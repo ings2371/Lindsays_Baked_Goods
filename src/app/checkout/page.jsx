@@ -81,10 +81,12 @@ export default function Checkout() {
                         <div className='bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 border-1 border-gray-200'>
                                 {cart.map (BakedGood => (
                                     <div key={BakedGood.cartId} className='flex flex-row p-2'>
-                                        <img
+                                        <div className='h-17.5 w-13 overflow-hidden'>
+                                            <img
                                             src={`/Baked_Goods/${BakedGood.item.Thumbnail}`}
-                                            style={{height: 150, width: 105.0591833}}
-                                        />
+                                            className='w-full h-full object-cover'
+                                            />
+                                        </div>
                                         <div className='size-full flex flex-col sm:flex-row'>
                                             <div className='flex flex-col basis-2/3 sm:basis-2/3 pl-5'>
                                                 <p className='text-2xl'>{BakedGood.item.Baked_Name}</p>

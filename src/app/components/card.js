@@ -5,12 +5,12 @@ const Item = ({Baked_Good}) => {
         <>
             {/* how the data displays*/}
             <Link href={`/baked-good-details/${Baked_Good._id}`}>
-                <div key={Baked_Good._id} className="flex items-center justify-center p-0 col-md-4">
+                <div key={Baked_Good._id} className="flex items-start justify-center p-0 col-md-4 border border-gray-300 rounded h-full">
                     <div className="object-right box-shadow">
                         <div className='w-13.25 h-13 md:h-26.5 md:w-37 lg:h-40 lg:w-56 lg:min-w-56 overflow-hidden'>
                             <img
                             src={`/Baked_Goods/${Baked_Good.Thumbnail}`}
-                            className='w-full h-full object-cover'
+                            className='w-full h-full object-cover rounded-t'
                             />
                         </div>
 
