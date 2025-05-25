@@ -39,6 +39,9 @@ export default function Checkout() {
     }, [])
 
     const buyNow = async () => {
+
+        // Check if something is empty
+
         const response = await fetch(`/api/sendOrder/`, {
             method: 'POST',
             headers: {
@@ -101,7 +104,7 @@ export default function Checkout() {
                                             </div>
                                             <div className='flex flex-col md:text-right pl-5 md:pl-0 basis-1/3'>
                                                 <p className='text-nowrap'>Quantity: {BakedGood.quantity}</p>
-                                                <p>Price: ${BakedGood.item.Different_varients[BakedGood.selected].Prices[0].Cost*BakedGood.quantity}</p>
+                                                <p>Price: ${BakedGood.cost}</p>
                                             </div>
                                         </div>
                                     </div>
