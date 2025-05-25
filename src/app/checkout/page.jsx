@@ -10,8 +10,8 @@ export default function Checkout() {
     const [email, setEmail] = useState("")
     const [fullName, setFullName] = useState("")
     const [startDate, setStartDate] = useState("")
-    const [endDate, setEndDate] = useState(null)
-    const [pickupTime, setPickupTime] = useState(null)
+    const [endDate, setEndDate] = useState("")
+    const [pickupTime, setPickupTime] = useState("")
     const [comments, setComments] = useState("")
 
     useEffect(() => {
