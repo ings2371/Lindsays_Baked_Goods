@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 export async function POST(request) {
     try {
         const body = await request.json();
-        const { email, fullName, startDate, endDate, pickupTime, cart, cost } = body;
+        const { email, fullName, startDate, endDate, pickupTime, cart, cost, comments } = body;
 
         // const resend = new Resend('re_5XLJeyLJ_5ZcDtAXUKFLuW3YRg3HujnoR');
         const resend = new Resend('re_fwLHhgka_AgTdTyqZCVpE24QAaDBo1z9o');
@@ -15,6 +15,13 @@ export async function POST(request) {
         const formattedDate = day + "/" + month + "/" + year
         console.log(formattedDate);
 
+        const hours = currentDate.getHours();
+        const minutes = currentDate.getMinutes();
+        const seconds = currentDate.getSeconds();
+        const currentTime = hours + ":" + minutes + ":" + seconds
+
+
+
         // Build each cart item as an HTML block
         const cartItems = `
                 ${cart.map((BakedGood) => {
@@ -23,9 +30,13 @@ export async function POST(request) {
                     const price = variation.Prices[0].Cost * BakedGood.quantity;
                     const imageUrl = `https://lindsayssweettreats.com/Baked_Goods/${item.Thumbnail}`;
 
+                    const unit = variation.Unit;
+                    const number = parseInt(unit.match(/\d+/)[0]);
+                    console.log(number); // Output: 6
+
                     return `
                         <tr>
-                            <td colspan="5" style="border-top: 2px solid rgb(182, 217, 215);"></td>
+                            <td colspan="6" style="border-top: 2px solid rgb(182, 217, 215);"></td>
                         </tr>
                         <tr>
                             <td style="text-align: center;">
@@ -41,7 +52,10 @@ export async function POST(request) {
                                 <p>${variation.Variation_name}</p>
                             </td>
                             <td>
-                                <p>$${price.toFixed(2)}</p>
+                                <p style="text-align: center;">${number}</p>
+                            </td>
+                            <td>
+                                <p style="text-align: center;">$${price.toFixed(2)}</p>
                             </td>
                         </tr>
                     `;
@@ -63,13 +77,11 @@ export async function POST(request) {
                             <table style="width: 100%;">
                                 <tr>
                                     <td>SOLD TO</td>
-                                    <td>DATE</td>
-                                    <td>RECEIPT #</td>
+                                    <td style="text-align: center;">DATE</td>
                                 </tr>
                                 <tr>
                                     <td>${fullName}</td>
                                     <td>${formattedDate}</td>
-                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>${email}</td>
@@ -80,6 +92,9 @@ export async function POST(request) {
                             <p>Pickup Date: ${startDate} to ${endDate}</p>
                             <p>Pickup Time: ${pickupTime}</p>
                         </div>
+                        <div style="width: 100%; border-top: 2px solid #5A4FE8; display: inline-block;">
+                            <p>Comments: <br/>${comments}</p>
+                        </div>
                         <table style="border-collapse: collapse; width: 100%; border-top: 2px solid #5A4FE8;">
                             <table style="width: 100%">
                                 <tr style="text-align: left;">
@@ -87,12 +102,13 @@ export async function POST(request) {
                                     <th>IMAGE</th>
                                     <th>DESCRIPTION</th>
                                     <th>VARIANT</th>
+                                    <th>PRICE PER UNIT</th>
                                     <th>LINE TOTAL</th>
                                 </tr>
                                 ${cartItems}
                             </table>
                             
-                            <p><strong>Total: $${cost}</strong></p>
+                            <p><strong>Total due on pickup: $${cost}</strong></p>
                         </div>
                     </div>
                     </td>
@@ -104,17 +120,17 @@ export async function POST(request) {
         var response = await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: 'cakefordaysboy@gmail.com',
-            subject: 'Order Confirmation',
+            subject: `Order Confirmation: ${fullName}, ${formattedDate} ${currentTime}`,
             html: htmlContent,
         });
         console.log("Resend Response:", response);
 
-        response = await resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: email,
-            subject: 'Order Confirmation',
-            html: htmlContent,
-        });
+        // response = await resend.emails.send({
+        //     from: 'onboarding@resend.dev',
+        //     to: email,
+        //     subject: 'Order Confirmation',
+        //     html: htmlContent,
+        // });
 
         console.log("Resend Response:", response);
 

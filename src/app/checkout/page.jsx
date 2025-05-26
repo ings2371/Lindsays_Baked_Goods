@@ -95,8 +95,15 @@ export default function Checkout() {
         <div className='size-full'>
             {console.log(cart)}
             <h1 className="text-center text-2xl">Checkout</h1>
-            <div className='p-5 pb-0'>
-                <p className="text-center">How to pay is to either E-transfer or with<br/> cash apon pick-up or drop off</p>
+            <div className='basis-full p-5 pb-0 flex flex-row'>
+                <div className='basis-1/2'>
+                    <p>How to pay is to either E-transfer or with<br/> cash apon pick-up or drop off</p>
+                </div>
+                
+                <div className='basis-1/2 text-right'>
+                    <p className='text-right'>Will send a follow up email to confirm order</p>
+                </div>
+               
             </div>
             
             <div className='flex flex-col lg:flex-row'>
@@ -192,7 +199,7 @@ export default function Checkout() {
                         <div className="mb-4">
                             <label htmlFor="Comments" className="block text-gray-700 text-sm mb-2">Comments</label>
                             <textarea
-                                id="Comments" placeholder='e.g. "Cookies should be gluten free"' name="message" required className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' rows="5" cols="30" 
+                                id="Comments" placeholder='e.g. "Cookies should be gluten free"' name="message" className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' rows="5" cols="30" 
                                 onChange={(e) => setComments(e.target.value)}
                                 value = { comments }
                             />
@@ -201,7 +208,6 @@ export default function Checkout() {
                         <button
                         className='p-5 bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded w-min text-nowrap'
                         onClick={(e) => {
-                            e.preventDefault();
                             buyNow();
                         }}
                         >
