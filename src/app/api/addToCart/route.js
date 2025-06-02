@@ -5,7 +5,7 @@ export async function POST(request) {
     const {BakedGood, BakedGoodId, variation, quantity} = await request.json();
     const cookieOptions = {
         httpOnly: false,
-        maxAge: 99999999999999999999
+        maxAge: 60*60*12
     }
     
     const cookie = await cookies()
@@ -29,7 +29,7 @@ export async function POST(request) {
 
     const cookieStore = await cookies();
     cookieStore.set('items', encodeURIComponent(JSON.stringify(items)), cookieOptions)
-    return NextResponse.json({ message: "added to cart"}, {status: 201}); 
+    return NextResponse.json({ message: "added to cart"}, {status: 201});
 }
 
 export async function GET(request) {

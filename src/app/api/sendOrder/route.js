@@ -29,10 +29,9 @@ export async function POST(request) {
                     const variation = item.Different_varients[BakedGood.selected];
                     const price = variation.Prices[0].Cost * BakedGood.quantity;
                     const imageUrl = `https://lindsayssweettreats.com/Baked_Goods/${item.Thumbnail}`;
-
                     const unit = variation.Unit;
                     const number = parseInt(unit.match(/\d+/)[0]);
-                    console.log(number); // Output: 6
+                    console.log(number);
 
                     return `
                         <tr>
@@ -81,7 +80,7 @@ export async function POST(request) {
                                 </tr>
                                 <tr>
                                     <td>${fullName}</td>
-                                    <td>${formattedDate}</td>
+                                    <td style="text-align: center;">${formattedDate}</td>
                                 </tr>
                                 <tr>
                                     <td>${email}</td>
@@ -123,15 +122,6 @@ export async function POST(request) {
             subject: `Order Confirmation: ${fullName}, ${formattedDate} ${currentTime}`,
             html: htmlContent,
         });
-        console.log("Resend Response:", response);
-
-        // response = await resend.emails.send({
-        //     from: 'onboarding@resend.dev',
-        //     to: email,
-        //     subject: 'Order Confirmation',
-        //     html: htmlContent,
-        // });
-
         console.log("Resend Response:", response);
 
         return new Response(JSON.stringify({ success: true, response }), { status: 200 });

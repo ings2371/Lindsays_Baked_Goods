@@ -13,7 +13,6 @@ export default function Contact() {
     const router = useRouter()
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
         console.log({FirstName, LastName, City, Email, Comments})
 
         try {

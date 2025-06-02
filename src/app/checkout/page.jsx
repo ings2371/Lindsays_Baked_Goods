@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef  } from 'react'
 
 export default function Checkout() {
     const [cart, setCart] = useState([])
@@ -13,6 +13,7 @@ export default function Checkout() {
     const [endDate, setEndDate] = useState("")
     const [pickupTime, setPickupTime] = useState("")
     const [comments, setComments] = useState("")
+    const errorRef = useRef(null);
 
 
     const fetchCart = async () => {
@@ -39,6 +40,13 @@ export default function Checkout() {
         
     }, [])
 
+    useEffect(() => {
+    if (error && errorRef.current) {
+        errorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        errorRef.current.focus(); // Only if you want keyboard focus
+    }
+    }, [error]);
+
     const removeItem = async (cartId) => {
         try{
         const response = await fetch(`/api/addToCart/newcart/`, {
@@ -60,29 +68,36 @@ export default function Checkout() {
 
     const buyNow = async () => {
 
-        // Check if something is empty
+        if (!email || !fullName || !startDate || !endDate || !pickupTime) {
+            setError("Please fill out all required fields.");
+            return; // Prevent API call and redirect
+        }
 
+        const data = JSON.stringify({
+            'email': email,
+            'fullName': fullName,
+            'startDate': startDate,
+            'endDate': endDate,
+            'pickupTime': pickupTime,
+            'cart': cart,
+            'cost': cost,
+            'comments': comments
+        })
+        localStorage.setItem("orderData", data)
         const response = await fetch(`/api/sendOrder/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                'email': email,
-                'fullName': fullName,
-                'startDate': startDate,
-                'endDate': endDate,
-                'pickupTime': pickupTime,
-                'cart': cart,
-                'cost': cost,
-                'comments': comments
-            })
+            body: data,
+            credentials: 'include'
         })
         .catch(error => {
             console.error(error)
         })
         const result = await response.json()
         console.log(result)
+        location.href = `/checkout/reciept`
     }
 
 
@@ -147,6 +162,13 @@ export default function Checkout() {
                         </div>
                     </div>
                     <div className='flex flex-col basis-1/4 p-5'>
+                    <h1
+                        ref={errorRef}
+                        tabIndex={-1} // Makes it focusable
+                        className="text-red-600 font-bold"
+                    >
+                        {error}
+                    </h1>
                     <form className='bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 border-1 border-gray-200'>
                         <div className="mb-4">
                             <label htmlFor="Email_Address" className="block text-gray-700 text-sm mb-2">Email Address</label>
@@ -208,6 +230,7 @@ export default function Checkout() {
                         <button
                         className='p-5 bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded w-min text-nowrap'
                         onClick={(e) => {
+                            e.preventDefault()
                             buyNow();
                         }}
                         >
